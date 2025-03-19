@@ -1,0 +1,51 @@
+<!-- pages/group/detail.wxml 拼团详情页 -->
+<view class="container">
+  <!-- 头部信息 -->
+  <view class="header">
+    <image class="cover" src="{{activity.cover}}" />
+    <view class="countdown">
+      <text>剩余时间：</text>
+      <count-down 
+        end-time="{{activity.endTime}}" 
+        bind:end="handleCountdownEnd" 
+      />
+    </view>
+  </view>
+
+  <!-- 参与成员 -->
+  <view class="member-section">
+    <text class="section-title">参与成员 ({{members.length}}/{{activity.groupSize}})</text>
+    <scroll-view scroll-x class="member-list">
+      <view wx:for="{{members}}" wx:key="index" class="member">
+        <image src="{{item.avatar}}" class="avatar" />
+        <text class="name">{{item.nickName}}</text>
+      </view>
+      <view wx:if="{{members.length < activity.groupSize}}" class="member empty">
+        <image src="/images/icon-add.png" class="add-icon" />
+        <text>邀好友</text>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 拼团规则 -->
+  <view class="rule-section">
+    <text class="section-title">拼团规则</text>
+    <view class="rule-item">
+      <text>1. {{activity.groupSize}}人成团，有效期{{activity.duration}}小时</text>
+      <text>2. 未成团自动退款</text>
+      <text>3. 每人限购{{activity.limit}}次</text>
+    </view>
+  </view>
+
+  <!-- 底部操作栏 -->
+  <view class="footer">
+    <view class="price">¥{{activity.price}}</view>
+    <button 
+      class="join-btn" 
+      bindtap="handleJoinGroup"
+      disabled="{{isFull}}"
+    >
+      {{isFull ? '已满员' : '立即参团'}}
+    </button>
+  </view>
+</view>

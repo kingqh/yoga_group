@@ -1,0 +1,72 @@
+<!-- pages/index/index.wxml 首页 -->
+<view class="container">
+  <view class="fixed-share" bindtap="toggleShareMenu">
+    <image src="/images/icon-share.png" class="share-icon" />
+  </view>
+  <view 
+  class="share-mask" 
+  wx:if="{{showShareMenu}}" 
+  bindtap="toggleShareMenu"/>
+  <!-- 分享菜单弹出层 -->
+  <view class="share-menu" wx:if="{{showShareMenu}}">
+    <view 
+      class="menu-item" 
+      bindtap="handleShareWechat"
+    >
+      <image src="/images/icon-wechat.png" />
+      <text>微信好友</text>
+    </view>
+    <view 
+      class="menu-item" 
+      bindtap="handleShareMoment"
+    >
+      <image src="/images/icon-moment.png" />
+      <text>朋友圈</text>
+    </view>
+  </view>
+  <!-- 拼团活动列表 -->
+  <view class="activity-list">
+    <view wx:for="{{activityList}}" wx:key="id" class="activity-card">
+      <image class="cover" src="{{item.cover}}" mode="aspectFill" />
+      <view class="content">
+        <view class="title">{{item.title}}</view>
+        
+        <!-- 价格展示 -->
+        <view class="price-box">
+          <text class="current">拼团价 ¥{{item.price}}</text>
+          <text class="original">¥{{item.originalPrice}}</text>
+        </view>
+
+        <!-- 成团进度 -->
+        <view class="progress-box">
+          <progress 
+            percent="{{(item.joined / item.groupSize) * 100}}" 
+            stroke-width="4" 
+            activeColor="#FF6B6B"
+          />
+          <text class="progress-text">
+            已有{{item.joined}}人参与，还需{{item.groupSize - item.joined}}人成团
+          </text>
+        </view>
+
+        <!-- 操作按钮 -->
+        <view class="action-box">
+          <button 
+            class="join-btn" 
+            bindtap="handleJoinGroup" 
+            data-id="{{item.id}}"
+          >
+            立即参团
+          </button>
+          <button 
+            class="create-btn" 
+            bindtap="handleCreateGroup" 
+            data-id="{{item.id}}"
+          >
+            发起新团
+          </button>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
