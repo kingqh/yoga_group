@@ -25,4 +25,6 @@ class ActivityController {
   }
 }
 
+
+
 module.exports = ActivityController;

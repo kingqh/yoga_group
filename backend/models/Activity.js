@@ -23,14 +23,30 @@ class Activity {
     return rows[0] || null;
   }
 
-  // 减少库存
-  static async decreaseStock(id) {
-    const [result] = await db.query(`
-      UPDATE group_activity 
-      SET stock = stock - 1 
-      WHERE id = ? AND stock > 0
-    `, [id]);
-    return result.affectedRows > 0;
+  /**
+   * 扣减库存（事务安全版本）
+   * @param {number} id - 活动ID
+   * @param {object} connection - 数据库连接对象
+   * @returns {Promise<boolean>} 是否扣减成功
+   */
+   static async decreaseStock(id, connection) {
+    try {
+      const [result] = await connection.query(
+        `UPDATE group_activity 
+         SET stock = stock - 1 
+         WHERE id = ? AND stock > 0
+         AND start_time <= NOW() 
+         AND end_time >= NOW()`,
+        [id]
+      );
+      
+      // affectedRows > 0 表示成功扣减
+      return result.affectedRows > 0;
+      
+    } catch (err) {
+      console.error('库存扣减失败:', err);
+      throw new Error('STOCK_UPDATE_FAILED');
+    }
   }
 }
 

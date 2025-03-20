@@ -68,6 +68,43 @@ class Group {
       [status, id]
     );
   }
+
+   /**
+   * 添加成员（事务安全版本）
+   * @param {number} id - 拼团ID
+   * @param {string} openid - 用户openid
+   * @param {object} connection - 数据库连接对象
+   * @returns {Promise<boolean>} 是否添加成功
+   */
+  static async addMemberWithConnection(id, openid, connection) {
+    try {
+      // 使用JSON_SEARCH防止重复添加
+      const [result] = await connection.query(
+        `UPDATE user_group 
+          SET 
+            members = JSON_ARRAY_APPEND(
+              members,
+              '$',
+              CAST(? AS JSON)
+          WHERE id = ?
+            AND status = 0
+            AND expire_time > NOW()
+            AND JSON_SEARCH(members, 'one', ?) IS NULL
+            AND (SELECT COUNT(*) 
+                FROM JSON_LENGTH(members)) < group_size`,
+        [JSON.stringify(openid), id, openid]
+      );
+
+      if (result.affectedRows === 0) {
+        throw new Error('ADD_MEMBER_FAILED');
+      }
+      return true;
+
+    } catch (err) {
+      console.error('添加成员失败:', err);
+      throw new Error('MEMBER_UPDATE_FAILED');
+    }
+  }
 }
 
 module.exports = Group;
