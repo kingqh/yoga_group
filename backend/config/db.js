@@ -1,6 +1,7 @@
 // backend/config/db.js
 const mysql = require('mysql2/promise');
 const logger = require('./logger');
+require('dotenv').config();
 
 class Database {
   constructor() {
