@@ -4,25 +4,17 @@
   min-height: 100vh;
 }
 
-.banner {
-  height: 360rpx;
-}
-.banner image {
-  width: 100%;
-  height: 100%;
-}
-
 .activity-card {
   background: #fff;
   border-radius: 16rpx;
-  margin: 20rpx;
+  /* margin: 20rpx; */
   overflow: hidden;
   box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.05);
 }
 
 .cover {
   width: 100%;
-  height: 400rpx;
+  height: 1200rpx;
 }
 
 .content {
@@ -163,4 +155,66 @@ progress {
   bottom: 0;
   background: rgba(0,0,0,0.3);
   z-index: 999;
+}
+
+/* pages/index/index.wxss 新增样式 */
+/* 海报生成按钮 */
+.fixed-poster {
+  position: fixed;
+  right: 30rpx;
+  bottom: 120rpx;
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  background: rgba(94,185,155,0.9);
+  box-shadow: 0 8rpx 16rpx rgba(94,185,155,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.poster-icon {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+/* 海报预览模态框 */
+.poster-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.canvas {
+  width: 80%;
+  max-width: 600rpx;
+  background: #fff;
+  border-radius: 20rpx;
+}
+
+.action-btns {
+  margin-top: 40rpx;
+  display: flex;
+  gap: 30rpx;
+}
+
+.save-btn {
+  background: #5EB99B;
+  color: #fff;
+  min-width: 200rpx;
+}
+
+.close-btn {
+  background: #666;
+  color: #fff;
+  min-width: 200rpx;
 }

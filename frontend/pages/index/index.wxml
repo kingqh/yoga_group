@@ -1,27 +1,28 @@
 <!-- pages/index/index.wxml 首页 -->
 <view class="container">
-  <view class="fixed-share" bindtap="toggleShareMenu">
-    <image src="/images/icon-share.png" class="share-icon" />
+  <!-- 右侧悬浮海报生成按钮 -->
+  <view class="fixed-poster" bindtap="showPosterMenu">
+    <image src="/images/icon-poster.png" class="poster-icon" />
   </view>
-  <view 
-  class="share-mask" 
-  wx:if="{{showShareMenu}}" 
-  bindtap="toggleShareMenu"/>
-  <!-- 分享菜单弹出层 -->
-  <view class="share-menu" wx:if="{{showShareMenu}}">
-    <view 
-      class="menu-item" 
-      bindtap="handleShareWechat"
-    >
-      <image src="/images/icon-wechat.png" />
-      <text>微信好友</text>
+
+  <!-- 海报生成菜单 -->
+  <view class="poster-menu" wx:if="{{showPosterMenu}}">
+    <view class="menu-item" bindtap="handleGeneratePoster">
+      <image src="/images/icon-camera.png" />
+      <text>生成海报</text>
     </view>
-    <view 
-      class="menu-item" 
-      bindtap="handleShareMoment"
-    >
-      <image src="/images/icon-moment.png" />
-      <text>朋友圈</text>
+  </view>
+
+  <!-- 海报预览层 -->
+  <view class="poster-modal" wx:if="{{showPoster}}">
+    <canvas 
+      canvas-id="posterCanvas" 
+      class="canvas"
+      style="width: {{canvasWidth}}px; height: {{canvasHeight}}px;"
+    ></canvas>
+    <view class="action-btns">
+      <button class="save-btn" bindtap="savePoster">保存到相册</button>
+      <button class="close-btn" bindtap="closePoster">关闭</button>
     </view>
   </view>
   <!-- 拼团活动列表 -->
