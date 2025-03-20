@@ -5,7 +5,7 @@ const app = express();
 
 // 中间件
 app.use(bodyParser.json());
-app.use(jwt({ secret: process.env.JWT_SECRET }).unless({path: ['/api/login']}));
+// app.use(jwt({ secret: process.env.JWT_SECRET }).unless({path: ['/api/login']}));
 
 // 路由
 const apiRouter = require('./routes/api');
