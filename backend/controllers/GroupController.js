@@ -24,12 +24,12 @@ class GroupController {
         if (!stockUpdated) throw new Error('STOCK_NOT_ENOUGH');
 
         // 建团
-        const groupId = await Group.createWithConnection({
+        const groupId = await Group.createWithConnection(
           activityId,
           creatorOpenId,
-          expireTime: new Date(Date.now() + activity.duration * 3600 * 1000),
+          new Date(Date.now() + activity.duration * 3600 * 1000),
           connection
-        });
+        );
 
         const group = await Group.findByIdWithConnection(groupId, connection);
 
