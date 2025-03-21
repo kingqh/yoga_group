@@ -9,8 +9,8 @@ const logger = winston.createLogger({
   transports: [
     new winston.transports.Console(),
     new winston.transports.File({ 
-      filename: 'logs/db-errors.log',
-      level: 'error'
+      filename: 'logs/yoga.log',
+      level: 'debug'
     })
   ]
 });

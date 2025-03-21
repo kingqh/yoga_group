@@ -1,5 +1,6 @@
 // backend/models/Activity.js
 const db = require('../config/db');
+const logger = require('../log/logger');
 const { formatDate } = require('../utils/helper');
 
 class Activity {
@@ -16,6 +17,7 @@ class Activity {
 
   // 根据ID查询活动
   static async findById(id) {
+    logger.info(`[Activity] findById (ID: ${id})`);
     const [rows] = await db.query(
       'SELECT * FROM group_activity WHERE id = ?',
       [id]

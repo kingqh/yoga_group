@@ -1,0 +1,63 @@
+-- 拼团活动表
+CREATE TABLE `group_activity` (
+  `id` INT PRIMARY KEY AUTO_INCREMENT,
+  `title` VARCHAR(100) NOT NULL,
+  `price` DECIMAL(10,2) NOT NULL,
+  `original_price` DECIMAL(10,2) NOT NULL,
+  `group_size` INT NOT NULL,
+  `duration` INT COMMENT '小时数',
+  `start_time` DATETIME,
+  `end_time` DATETIME,
+  `stock` INT DEFAULT 0
+);
+
+-- 用户拼团表
+CREATE TABLE `user_group` (
+  `id` INT PRIMARY KEY AUTO_INCREMENT,
+  `activity_id` INT NOT NULL,
+  `creator_openid` VARCHAR(50) NOT NULL,
+  `members` JSON NOT NULL COMMENT '存储openid数组',
+  `status` TINYINT DEFAULT 0 COMMENT '0-进行中 1-成功 2-失败',
+  `expire_time` DATETIME
+);
+
+-- 订单表
+CREATE TABLE `orders` (
+  `order_id` VARCHAR(50) PRIMARY KEY,
+  `openid` VARCHAR(50) NOT NULL,
+  `group_id` INT,
+  `amount` DECIMAL(10,2) NOT NULL,
+  `status` TINYINT DEFAULT 0 COMMENT '0-未支付 1-已支付'
+);
+
+
+-- 为常用查询字段添加索引
+ALTER TABLE user_group ADD INDEX idx_expire_status (expire_time, status);
+ALTER TABLE orders ADD INDEX idx_order_status (order_id, status);
+ALTER TABLE group_activity ADD INDEX idx_time_status (start_time, end_time);
+
+
+
+1. 加入一条活动数据
+
+INSERT INTO `group_activity` (
+  `title`,
+  `price`,
+  `original_price`,
+  `group_size`,
+  `duration`,
+  `start_time`,
+  `end_time`,
+  `stock`
+) VALUES (
+  '瑜伽新手体验课',
+  99.00,
+  199.00,
+  3,
+  24,
+  '2023-10-01 00:00:00',
+  '2023-10-31 23:59:59',
+  100
+);
+
+2.
