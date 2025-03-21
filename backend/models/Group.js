@@ -58,7 +58,7 @@ class Group {
 
   // 获取拼团详情
   static async findById(id) {
-    const [rows] = await db.query(`
+    const rows = await db.query(`
       SELECT 
         ug.*,
         ga.title,
@@ -73,7 +73,7 @@ class Group {
 
   static async findByIdWithConnection(id, connection) {
     try {
-        const [rows] = await connection.query(`
+        const rows = await connection.query(`
         SELECT 
           ug.*,
           ga.title,
