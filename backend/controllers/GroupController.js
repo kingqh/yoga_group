@@ -1,3 +1,4 @@
+const db = require('../config/db');
 const Group = require('../models/Group');
 const Order = require('../models/Order');
 const Activity = require('../models/Activity');
@@ -14,7 +15,7 @@ class GroupController {
       }
 
       // 事务操作
-      await transaction(async (connection) => {
+      await db.transaction(async (connection) => {
         // 扣减库存
         const stockUpdated = await Activity.decreaseStock(
           activityId, 
@@ -23,13 +24,14 @@ class GroupController {
         if (!stockUpdated) throw new Error('STOCK_NOT_ENOUGH');
 
         // 建团
-        const groupId = await Group.create({
+        const groupId = await Group.createWithConnection({
           activityId,
           creator: creatorOpenId,
-          expireTime: new Date(Date.now() + activity.duration * 3600 * 1000)
+          expireTime: new Date(Date.now() + activity.duration * 3600 * 1000),
+          connection
         });
 
-        const group = await Group.findById(groupId);
+        const group = await Group.findByIdWithConnection(groupId, connection);
 
         // 创建订单记录
         await Order.createWithConnection(
@@ -65,7 +67,7 @@ class GroupController {
       }
 
       // 事务操作
-      await transaction(async (connection) => {
+      await db.transaction(async (connection) => {
         // 扣减库存
         const stockUpdated = await Activity.decreaseStock(
           group.activityId, 

@@ -17,6 +17,25 @@ class Group {
     return result.insertId;
   }
 
+  static async createWithConnection(activityId, creatorOpenid, expireTime, connection) {
+    try {
+      const [result] = await connection.query(`
+        INSERT INTO user_group SET 
+          activity_id = ?,
+          creator_openid = ?,
+          members = JSON_ARRAY(?),
+          expire_time = ?,
+          status = 0,
+          created_at = NOW(),
+      `, [activityId, creatorOpenid, creatorOpenid, expireTime]);
+      
+      return result.insertId;
+    } catch (err) {
+      console.error('创建新拼团失败:', err);
+      throw new Error('GROUP_CREATE_FAILED');
+    }
+  }
+
   // 获取进行中的拼团列表
   static async findActive() {
     const rows = await db.query(`
@@ -48,6 +67,26 @@ class Group {
       WHERE ug.id = ?
     `, [id]);
     return rows[0] || null;
+  }
+
+  static async findByIdWithConnection(id, connection) {
+    try {
+        const [rows] = await connection.query(`
+        SELECT 
+          ug.*,
+          ga.title,
+          ga.price,
+          ga.group_size AS groupSize
+        FROM user_group ug
+        JOIN group_activity ga ON ug.activity_id = ga.id
+        WHERE ug.id = ?
+      `, [id]);
+      return rows[0] || null;
+    } catch (err) {
+      console.error('添加成员失败:', err);
+      throw new Error('FIND_GROUP_FAILED');
+    }
+  
   }
 
   // 添加成员
