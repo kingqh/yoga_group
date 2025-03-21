@@ -26,7 +26,7 @@ class GroupController {
         // 建团
         const groupId = await Group.createWithConnection({
           activityId,
-          creator: creatorOpenId,
+          creatorOpenId,
           expireTime: new Date(Date.now() + activity.duration * 3600 * 1000),
           connection
         });

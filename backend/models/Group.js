@@ -1,5 +1,6 @@
 // backend/models/Group.js
 const db = require('../config/db');
+const logger = require('../log/logger');
 
 class Group {
   // 创建新拼团
@@ -11,7 +12,7 @@ class Group {
         members = JSON_ARRAY(?),
         expire_time = ?,
         status = 0,
-        created_at = NOW(),
+        created_at = NOW()
     `, [activityId, creatorOpenid, creatorOpenid, expireTime]);
     
     return result.insertId;
@@ -19,19 +20,22 @@ class Group {
 
   static async createWithConnection(activityId, creatorOpenid, expireTime, connection) {
     try {
-      const [result] = await connection.query(`
-        INSERT INTO user_group SET 
-          activity_id = ?,
-          creator_openid = ?,
-          members = JSON_ARRAY(?),
-          expire_time = ?,
-          status = 0,
-          created_at = NOW(),
-      `, [activityId, creatorOpenid, creatorOpenid, expireTime]);
-      
+      logger.info('[GROUP] :aaaaa ');
+      const input = `INSERT INTO user_group SET 
+        activity_id = ?,
+        creator_openid = ?,
+        members = JSON_ARRAY(?),
+        expire_time = ?,
+        status = 0,
+        created_at = NOW()
+    `;
+      logger.info('[GROUP] create group input: ', { input });
+      const [result] = await connection.query(input, [activityId, creatorOpenid, creatoOpenid, expireTime]);
+      logger.info('[GROUP] create res: ', { result });
       return result.insertId;
     } catch (err) {
       console.error('创建新拼团失败:', err);
+      logger.error('[GROUP] create error: ', { err });
       throw new Error('GROUP_CREATE_FAILED');
     }
   }
