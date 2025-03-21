@@ -10,7 +10,8 @@ class Group {
         creator_openid = ?,
         members = JSON_ARRAY(?),
         expire_time = ?,
-        status = 0
+        status = 0,
+        created_at = NOW(),
     `, [activityId, creatorOpenid, creatorOpenid, expireTime]);
     
     return result.insertId;

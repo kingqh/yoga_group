@@ -6,17 +6,39 @@ class GroupController {
   // 创建新拼团
   static async createGroup(req, res) {
     try {
-      const { activityId } = req.body;
+      const { actid: activityId, openid: creatorOpenId } = req.params;
       const activity = await Activity.findById(activityId);
       
       if (!activity || activity.stock <= 0) {
         return res.status(400).json({ code: 400, msg: '活动不可用' });
       }
 
-      const group = await Group.create({
-        activityId,
-        creator: req.user.openid,
-        expireTime: new Date(Date.now() + activity.duration * 3600 * 1000)
+      // 事务操作
+      await transaction(async (connection) => {
+        // 扣减库存
+        const stockUpdated = await Activity.decreaseStock(
+          activityId, 
+          connection
+        );
+        if (!stockUpdated) throw new Error('STOCK_NOT_ENOUGH');
+
+        // 建团
+        const groupId = await Group.create({
+          activityId,
+          creator: creatorOpenId,
+          expireTime: new Date(Date.now() + activity.duration * 3600 * 1000)
+        });
+
+        const group = await Group.findById(groupId);
+
+        // 创建订单记录
+        await Order.createWithConnection(
+          Order.generateOrderId(),
+          creatorOpenId,
+          groupId,
+          group.price,
+          connection
+        );
       });
 
       res.json({ code: 200, data: group });
@@ -28,8 +50,7 @@ class GroupController {
   // 加入拼团
   static async joinGroup(req, res) {
     try {
-      const { id: groupId } = req.params;
-      const { openid } = req.user;
+      const { id: groupId, openid: userOpenId } = req.params;
       const group = await Group.findById(groupId);
       if (!group) {
         return res.status(404).json({ code: 404, msg: '拼团不存在' });

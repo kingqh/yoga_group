@@ -19,6 +19,7 @@ CREATE TABLE `user_group` (
   `members` JSON NOT NULL COMMENT '存储openid数组',
   `status` TINYINT DEFAULT 0 COMMENT '0-进行中 1-成功 2-失败',
   `expire_time` DATETIME
+  `created_at` DATETIME
 );
 
 -- 订单表
@@ -28,6 +29,7 @@ CREATE TABLE `orders` (
   `group_id` INT,
   `amount` DECIMAL(10,2) NOT NULL,
   `status` TINYINT DEFAULT 0 COMMENT '0-未支付 1-已支付'
+  `created_at` DATETIME
 );
 
 
@@ -58,6 +60,26 @@ INSERT INTO `group_activity` (
   '2023-10-01 00:00:00',
   '2023-10-31 23:59:59',
   100
+);
+
+INSERT INTO `group_activity` (
+  `title`,
+  `price`,
+  `original_price`,
+  `group_size`,
+  `duration`,
+  `start_time`,
+  `end_time`,
+  `stock`
+) VALUES (
+  '瑜伽新手体验课_测试_1',
+  199.00,
+  299.00,
+  3,
+  24,
+  '2025-03-21 00:00:00',
+  '2025-03-22 23:59:59',
+  200
 );
 
 2.
