@@ -18,7 +18,7 @@ class Group {
 
   // 获取进行中的拼团列表
   static async findActive() {
-    const [rows] = await db.query(`
+    const rows = await db.query(`
       SELECT 
         ug.id, 
         ga.title,

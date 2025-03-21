@@ -1,0 +1,1 @@
+{"error":"Access denied for user 'root'@'localhost' (using password: NO)","level":"error","message":"[DB Query Error]","params":[],"sql":"\n      SELECT * FROM group_activity \n      WHERE start_time <= NOW() \n        AND end_time >= NOW()\n      ORDER BY start_time DESC\n    ","timestamp":"2025-03-20T16:35:59.138Z"}

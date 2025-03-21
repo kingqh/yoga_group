@@ -6,22 +6,24 @@ const { formatDate } = require('../utils/helper');
 class Activity {
   // 获取所有有效活动
   static async findActive() {
-    const [rows] = await db.query(`
+    const rows = await db.query(`
       SELECT * FROM group_activity 
       WHERE start_time <= NOW() 
         AND end_time >= NOW()
       ORDER BY start_time DESC
     `);
+    logger.info('[Activity] all active activities: ', { rows });
     return rows;
   }
 
   // 根据ID查询活动
   static async findById(id) {
-    logger.info(`[Activity] findById (ID: ${id})`);
-    const [rows] = await db.query(
+    logger.info('[Activity] findById ', { id });
+    const rows = await db.query(
       'SELECT * FROM group_activity WHERE id = ?',
       [id]
     );
+    logger.info('[Activity] find activity ', { rows });
     return rows[0] || null;
   }
 

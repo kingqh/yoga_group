@@ -1,0 +1,74 @@
+{"id":"1","level":"info","message":"[Activity] findById ","timestamp":"2025-03-21T02:59:03.260Z"}
+{"level":"info","message":"[DB] New connection created (ID: 12)","timestamp":"2025-03-21T02:59:03.296Z"}
+{"level":"debug","message":"[DB] Connection acquired (ID: 12)","timestamp":"2025-03-21T02:59:03.297Z"}
+{"level":"debug","message":"[DB] Connection released (ID: 12)","timestamp":"2025-03-21T02:59:03.303Z"}
+{"id":"1","level":"info","message":"[Activity] findById ","timestamp":"2025-03-21T02:59:19.120Z"}
+{"level":"debug","message":"[DB] Connection acquired (ID: 12)","timestamp":"2025-03-21T02:59:19.120Z"}
+{"level":"debug","message":"[DB] Connection released (ID: 12)","timestamp":"2025-03-21T02:59:19.122Z"}
+{"id":"1","level":"info","message":"[Activity] findById ","timestamp":"2025-03-21T03:02:48.392Z"}
+{"level":"debug","message":"[DB] Connection acquired (ID: 12)","timestamp":"2025-03-21T03:02:48.392Z"}
+{"level":"debug","message":"[DB] Connection released (ID: 12)","timestamp":"2025-03-21T03:02:48.393Z"}
+{"id":"1","level":"info","message":"[Activity] findById ","timestamp":"2025-03-21T03:03:08.468Z"}
+{"level":"debug","message":"[DB] Connection acquired (ID: 12)","timestamp":"2025-03-21T03:03:08.468Z"}
+{"level":"debug","message":"[DB] Connection released (ID: 12)","timestamp":"2025-03-21T03:03:08.469Z"}
+{"id":"1","level":"info","message":"[Activity] findById ","timestamp":"2025-03-21T03:03:46.687Z"}
+{"level":"info","message":"[DB] New connection created (ID: 13)","timestamp":"2025-03-21T03:03:46.712Z"}
+{"level":"debug","message":"[DB] Connection acquired (ID: 13)","timestamp":"2025-03-21T03:03:46.713Z"}
+{"level":"debug","message":"[DB] Connection released (ID: 13)","timestamp":"2025-03-21T03:03:46.718Z"}
+{"level":"info","message":"[Activity] data ","rows":{"duration":24,"end_time":"2025-03-21T10:35:00.000Z","group_size":3,"id":1,"original_price":"199.00","price":"99.00","start_time":"2025-03-21T00:00:00.000Z","stock":100,"title":"瑜伽新手体验课"},"timestamp":"2025-03-21T03:03:46.719Z"}
+{"level":"debug","message":"[DB] Connection acquired (ID: 13)","timestamp":"2025-03-21T03:25:37.079Z"}
+{"level":"debug","message":"[DB] Connection released (ID: 13)","timestamp":"2025-03-21T03:25:37.081Z"}
+{"level":"debug","message":"[DB] Connection acquired (ID: 13)","timestamp":"2025-03-21T03:28:20.240Z"}
+{"level":"debug","message":"[DB] Connection released (ID: 13)","timestamp":"2025-03-21T03:28:20.241Z"}
+{"level":"debug","message":"[DB] Connection acquired (ID: 13)","timestamp":"2025-03-21T03:28:26.253Z"}
+{"level":"debug","message":"[DB] Connection released (ID: 13)","timestamp":"2025-03-21T03:28:26.254Z"}
+{"level":"debug","message":"[DB] Connection acquired (ID: 13)","timestamp":"2025-03-21T03:28:27.012Z"}
+{"level":"debug","message":"[DB] Connection released (ID: 13)","timestamp":"2025-03-21T03:28:27.012Z"}
+{"level":"debug","message":"[DB] Connection acquired (ID: 13)","timestamp":"2025-03-21T03:28:27.473Z"}
+{"level":"debug","message":"[DB] Connection released (ID: 13)","timestamp":"2025-03-21T03:28:27.474Z"}
+{"level":"debug","message":"[DB] Connection acquired (ID: 13)","timestamp":"2025-03-21T05:38:43.777Z"}
+{"level":"debug","message":"[DB] Connection released (ID: 13)","timestamp":"2025-03-21T05:38:43.778Z"}
+{"level":"debug","message":"[DB] Connection acquired (ID: 13)","timestamp":"2025-03-21T05:39:10.069Z"}
+{"level":"debug","message":"[DB] Connection released (ID: 13)","timestamp":"2025-03-21T05:39:10.070Z"}
+{"level":"debug","message":"[DB] Connection acquired (ID: 13)","timestamp":"2025-03-21T05:39:10.876Z"}
+{"level":"debug","message":"[DB] Connection released (ID: 13)","timestamp":"2025-03-21T05:39:10.877Z"}
+{"level":"debug","message":"[DB] Connection acquired (ID: 13)","timestamp":"2025-03-21T05:39:11.554Z"}
+{"level":"debug","message":"[DB] Connection released (ID: 13)","timestamp":"2025-03-21T05:39:11.555Z"}
+{"level":"debug","message":"[DB] Connection acquired (ID: 13)","timestamp":"2025-03-21T05:39:12.409Z"}
+{"level":"debug","message":"[DB] Connection released (ID: 13)","timestamp":"2025-03-21T05:39:12.410Z"}
+{"level":"debug","message":"[DB] Connection acquired (ID: 13)","timestamp":"2025-03-21T05:39:13.249Z"}
+{"level":"debug","message":"[DB] Connection released (ID: 13)","timestamp":"2025-03-21T05:39:13.250Z"}
+{"level":"debug","message":"[DB] Connection acquired (ID: 13)","timestamp":"2025-03-21T05:39:15.145Z"}
+{"level":"debug","message":"[DB] Connection released (ID: 13)","timestamp":"2025-03-21T05:39:15.146Z"}
+{"level":"info","message":"[DB] New connection created (ID: 17)","timestamp":"2025-03-21T05:46:33.747Z"}
+{"level":"debug","message":"[DB] Connection acquired (ID: 17)","timestamp":"2025-03-21T05:46:33.749Z"}
+{"level":"debug","message":"[DB] Connection released (ID: 17)","timestamp":"2025-03-21T05:46:33.755Z"}
+{"level":"info","message":"[Activity] all active activities: ","rows":{"duration":24,"end_time":"2025-03-21T10:35:00.000Z","group_size":3,"id":1,"original_price":"199.00","price":"99.00","start_time":"2025-03-21T00:00:00.000Z","stock":100,"title":"瑜伽新手体验课"},"timestamp":"2025-03-21T05:46:33.755Z"}
+{"level":"debug","message":"[DB] Connection acquired (ID: 17)","timestamp":"2025-03-21T05:52:36.795Z"}
+{"level":"debug","message":"[DB] Connection released (ID: 17)","timestamp":"2025-03-21T05:52:36.797Z"}
+{"level":"info","message":"[Activity] all active activities: ","rows":{"duration":24,"end_time":"2025-03-21T10:35:00.000Z","group_size":3,"id":1,"original_price":"199.00","price":"99.00","start_time":"2025-03-21T00:00:00.000Z","stock":100,"title":"瑜伽新手体验课"},"timestamp":"2025-03-21T05:52:36.797Z"}
+{"level":"info","message":"[DB] New connection created (ID: 18)","timestamp":"2025-03-21T05:56:47.384Z"}
+{"level":"debug","message":"[DB] Connection acquired (ID: 18)","timestamp":"2025-03-21T05:56:47.386Z"}
+{"level":"info","message":"[DB Query] get data: ","rows":[{"duration":24,"end_time":"2025-03-21T10:35:00.000Z","group_size":3,"id":1,"original_price":"199.00","price":"99.00","start_time":"2025-03-21T00:00:00.000Z","stock":100,"title":"瑜伽新手体验课"},{"duration":24,"end_time":"2025-03-21T10:45:00.000Z","group_size":3,"id":2,"original_price":"299.00","price":"199.00","start_time":"2025-03-20T16:00:00.000Z","stock":200,"title":"瑜伽新手体验课_测试_1"}],"timestamp":"2025-03-21T05:56:47.392Z"}
+{"level":"debug","message":"[DB] Connection released (ID: 18)","timestamp":"2025-03-21T05:56:47.393Z"}
+{"level":"info","message":"[Activity] all active activities: ","rows":{"duration":24,"end_time":"2025-03-21T10:35:00.000Z","group_size":3,"id":1,"original_price":"199.00","price":"99.00","start_time":"2025-03-21T00:00:00.000Z","stock":100,"title":"瑜伽新手体验课"},"timestamp":"2025-03-21T05:56:47.393Z"}
+{"level":"debug","message":"[DB] Connection acquired (ID: 18)","timestamp":"2025-03-21T05:56:53.707Z"}
+{"level":"info","message":"[DB Query] get data: ","rows":[{"duration":24,"end_time":"2025-03-21T10:35:00.000Z","group_size":3,"id":1,"original_price":"199.00","price":"99.00","start_time":"2025-03-21T00:00:00.000Z","stock":100,"title":"瑜伽新手体验课"},{"duration":24,"end_time":"2025-03-21T10:45:00.000Z","group_size":3,"id":2,"original_price":"299.00","price":"199.00","start_time":"2025-03-20T16:00:00.000Z","stock":200,"title":"瑜伽新手体验课_测试_1"}],"timestamp":"2025-03-21T05:56:53.708Z"}
+{"level":"debug","message":"[DB] Connection released (ID: 18)","timestamp":"2025-03-21T05:56:53.709Z"}
+{"level":"info","message":"[Activity] all active activities: ","rows":{"duration":24,"end_time":"2025-03-21T10:35:00.000Z","group_size":3,"id":1,"original_price":"199.00","price":"99.00","start_time":"2025-03-21T00:00:00.000Z","stock":100,"title":"瑜伽新手体验课"},"timestamp":"2025-03-21T05:56:53.709Z"}
+{"level":"info","message":"[DB] New connection created (ID: 19)","timestamp":"2025-03-21T06:07:15.095Z"}
+{"level":"debug","message":"[DB] Connection acquired (ID: 19)","timestamp":"2025-03-21T06:07:15.097Z"}
+{"level":"info","message":"[DB Query] get data: ","rows":[{"duration":24,"end_time":"2025-03-21T10:35:00.000Z","group_size":3,"id":1,"original_price":"199.00","price":"99.00","start_time":"2025-03-21T00:00:00.000Z","stock":100,"title":"瑜伽新手体验课"},{"duration":24,"end_time":"2025-03-21T10:45:00.000Z","group_size":3,"id":2,"original_price":"299.00","price":"199.00","start_time":"2025-03-20T16:00:00.000Z","stock":200,"title":"瑜伽新手体验课_测试_1"}],"timestamp":"2025-03-21T06:07:15.103Z"}
+{"level":"debug","message":"[DB] Connection released (ID: 19)","timestamp":"2025-03-21T06:07:15.103Z"}
+{"level":"info","message":"[Activity] all active activities: ","rows":[{"duration":24,"end_time":"2025-03-21T10:35:00.000Z","group_size":3,"id":1,"original_price":"199.00","price":"99.00","start_time":"2025-03-21T00:00:00.000Z","stock":100,"title":"瑜伽新手体验课"},{"duration":24,"end_time":"2025-03-21T10:45:00.000Z","group_size":3,"id":2,"original_price":"299.00","price":"199.00","start_time":"2025-03-20T16:00:00.000Z","stock":200,"title":"瑜伽新手体验课_测试_1"}],"timestamp":"2025-03-21T06:07:15.103Z"}
+{"id":"1","level":"info","message":"[Activity] findById ","timestamp":"2025-03-21T06:09:39.680Z"}
+{"level":"info","message":"[DB] New connection created (ID: 20)","timestamp":"2025-03-21T06:09:39.702Z"}
+{"level":"debug","message":"[DB] Connection acquired (ID: 20)","timestamp":"2025-03-21T06:09:39.702Z"}
+{"level":"info","message":"[DB Query] get data: ","rows":[{"duration":24,"end_time":"2025-03-21T10:35:00.000Z","group_size":3,"id":1,"original_price":"199.00","price":"99.00","start_time":"2025-03-21T00:00:00.000Z","stock":100,"title":"瑜伽新手体验课"}],"timestamp":"2025-03-21T06:09:39.708Z"}
+{"level":"debug","message":"[DB] Connection released (ID: 20)","timestamp":"2025-03-21T06:09:39.708Z"}
+{"level":"info","message":"[Activity] find activity ","rows":[{"duration":24,"end_time":"2025-03-21T10:35:00.000Z","group_size":3,"id":1,"original_price":"199.00","price":"99.00","start_time":"2025-03-21T00:00:00.000Z","stock":100,"title":"瑜伽新手体验课"}],"timestamp":"2025-03-21T06:09:39.708Z"}
+{"id":"2","level":"info","message":"[Activity] findById ","timestamp":"2025-03-21T06:09:50.820Z"}
+{"level":"debug","message":"[DB] Connection acquired (ID: 20)","timestamp":"2025-03-21T06:09:50.820Z"}
+{"level":"info","message":"[DB Query] get data: ","rows":[{"duration":24,"end_time":"2025-03-21T10:45:00.000Z","group_size":3,"id":2,"original_price":"299.00","price":"199.00","start_time":"2025-03-20T16:00:00.000Z","stock":200,"title":"瑜伽新手体验课_测试_1"}],"timestamp":"2025-03-21T06:09:50.822Z"}
+{"level":"debug","message":"[DB] Connection released (ID: 20)","timestamp":"2025-03-21T06:09:50.822Z"}
+{"level":"info","message":"[Activity] find activity ","rows":[{"duration":24,"end_time":"2025-03-21T10:45:00.000Z","group_size":3,"id":2,"original_price":"299.00","price":"199.00","start_time":"2025-03-20T16:00:00.000Z","stock":200,"title":"瑜伽新手体验课_测试_1"}],"timestamp":"2025-03-21T06:09:50.822Z"}

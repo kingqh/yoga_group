@@ -47,6 +47,7 @@ class Database {
     try {
       connection = await this.pool.getConnection();
       const [rows] = await connection.execute(sql, params);
+      logger.info('[DB Query] get data: ', { rows })
       return rows;
     } catch (err) {
       logger.error('[DB Query Error]', {
