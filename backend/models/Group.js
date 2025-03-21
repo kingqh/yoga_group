@@ -20,15 +20,17 @@ class Group {
 
   static async createWithConnection(activityId, creatorOpenid, expireTime, connection) {
     try {
-      const [result] = await connection.query(`
-        INSERT INTO user_group SET 
-          activity_id = ?,
-          creator_openid = ?,
-          members = JSON_ARRAY(?),
-          expire_time = ?,
-          status = 0,
-          created_at = NOW()
-      `, [activityId, creatorOpenid, creatoOpenid, expireTime]);
+      const aaa = (`
+      INSERT INTO user_group SET 
+        activity_id = ?,
+        creator_openid = ?,
+        members = JSON_ARRAY(?),
+        expire_time = ?,
+        status = 0,
+        created_at = NOW()
+    `, [activityId, creatorOpenid, creatoOpenid, expireTime])
+      logger.info("[GROUP] aaa: ", { aaa })
+      const [result] = await connection.query(aaa);
       logger.info('[GROUP] create res: ', { result });
       return result.insertId;
     } catch (err) {
