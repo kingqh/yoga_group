@@ -42,17 +42,15 @@ class Order {
    */
   static async createWithConnection(orderId, openid, groupId, amount, connection) {
     try {
-      await connection.query(
-        `INSERT INTO orders (
-          order_id,
-          openid,
-          group_id,
-          amount,
-          status,
-          created_at
-        ) VALUES (?, ?, ?, ?, 1, NOW())`,
-        [orderId, openid, groupId, amount]
-      );
+      await connection.query(`
+      INSERT INTO orders SET 
+        order_id = ?,
+        openid = ?,
+        group_id = ?,
+        amount = ?,
+        status = 1,
+        created_at = NOW()
+    `, [orderId, openid, groupId, amount])
 
     } catch (err) {
       console.error('订单创建失败:', err);
