@@ -20,7 +20,7 @@ class Group {
 
   static async createWithConnection(activityId, creatorOpenid, expireTime, connection) {
     try {
-      const aaa = (`
+      const [result] = await connection.query(`
       INSERT INTO user_group SET 
         activity_id = ?,
         creator_openid = ?,
@@ -28,9 +28,7 @@ class Group {
         expire_time = ?,
         status = 0,
         created_at = NOW()
-    `, [activityId, creatorOpenid, creatoOpenid, expireTime])
-      logger.info("[GROUP] aaa: ", { aaa })
-      const [result] = await connection.query(aaa);
+    `, [activityId, creatorOpenid, creatorOpenid, expireTime]);
       logger.info('[GROUP] create res: ', { result });
       return result.insertId;
     } catch (err) {
