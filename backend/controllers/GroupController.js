@@ -14,6 +14,11 @@ class GroupController {
         return res.status(400).json({ code: 400, msg: '活动不可用' });
       }
 
+      const order = await Order.findOrderByOpenId(creatorOpenId);
+      if (order) {
+        return res.status(409).json({ code: 409, msg: '用户已创建过订单' });
+      }
+
       // 事务操作
       await db.transaction(async (connection) => {
         // 扣减库存
@@ -67,6 +72,11 @@ class GroupController {
         return res.status(400).json({ code: 400, msg: '团已满了' });
       }
 
+      const order = await Order.findOrderByOpenId(userOpenId);
+      if (order) {
+        return res.status(409).json({ code: 409, msg: '已经参团了' });
+      }
+
       // 事务操作
       await db.transaction(async (connection) => {
         // 扣减库存
@@ -79,14 +89,14 @@ class GroupController {
         // 添加成员
         await Group.addMemberWithConnection(
           groupId, 
-          openid, 
+          userOpenId, 
           connection
         );
 
         // 创建订单记录
         await Order.createWithConnection(
           Order.generateOrderId(),
-          openid,
+          userOpenId,
           groupId,
           group.price,
           connection
@@ -121,6 +131,33 @@ class GroupController {
       res.status(500).json({ code: 500, msg: err.message });
     }
   }
+
+  // 获取所有订单
+  static async listOrders(req, res) {
+    try {
+      const orders = await Order.findAllOrders();
+      res.json({ code: 200, data: orders });
+    } catch (err) {
+      res.status(500).json({ code: 500, msg: err.message });
+    }
+  }
+
+  // 获取个人订单
+  static async getOrderByOpenId(req, res) {
+    try {
+      const order = await Order.findOrderByOpenId(req.params.openid);
+      if (!order) {
+        return res.status(404).json({ code: 404, msg: '用户未创建订单' });
+      }
+      res.json({ code: 200, data: order });
+    } catch (err) {
+      res.status(500).json({ code: 500, msg: err.message });
+    }
+  }
 }
+
+
+
+
 
 module.exports = GroupController;

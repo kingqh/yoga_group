@@ -16,7 +16,7 @@ class Order {
 
   // 根据订单号查询
   static async findByOrderId(orderId) {
-    const [rows] = await db.query(
+    const rows = await db.query(
       'SELECT * FROM orders WHERE order_id = ?',
       [orderId]
     );
@@ -29,6 +29,33 @@ class Order {
       'UPDATE orders SET status = ? WHERE order_id = ?',
       [status, orderId]
     );
+  }
+
+    // 获取所有订单
+  static async findAllOrders() {
+    const rows = await db.query(
+      'SELECT * FROM orders'
+    );
+    return rows || null;
+  }
+
+  // 根据openid获取订单
+  static async findOrderByOpenId(openid) {
+    const rows = await db.query(`
+      SELECT 
+        od.*,
+        ga.title AS activity_title,
+        ga.group_size,
+        ug.creator_openid AS group_creator_openid,
+        ug.members AS group_expire_time,
+        ug.expire_time AS group_expire_time,
+        ug.created_at AS group_created_at
+      FROM orders od
+      JOIN user_group ug ON ug.id = od.group_id
+      JOIN group_activity ga ON ug.activity_id = ga.id
+      WHERE openid = ?
+    `, [openid]);
+    return rows[0] || null;
   }
 
     /**

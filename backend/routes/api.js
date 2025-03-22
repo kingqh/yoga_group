@@ -21,6 +21,9 @@ router.get('/groups', GroupController.listActiveGroups); // 获取可参与拼�
 router.get('/groups/:id', GroupController.getGroupDetail); // 获取拼团详情
 router.post('/groups/:id/:openid/join', GroupController.joinGroup); // 加入拼团
 
+router.get('/orders', GroupController.listOrders); // 获取所有订单
+router.get('/orders/:openid', GroupController.getOrderByOpenId); // 获取个人订单
+
 // 支付相关接口
 router.post('/payment/prepay', PaymentController.createPrepayOrder); // 创建支付订单
 router.post('/payment/notify', PaymentController.handlePaymentNotify); // 支付回调

@@ -96,3 +96,5 @@ UPDATE group_activity SET end_time = '2025-03-25 18:45:00' WHERE id = 1;
 
 ## 删除一条数据
 
+DELETE FROM table_name; 删除所有行，并且有记录
+
