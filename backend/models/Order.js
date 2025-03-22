@@ -44,8 +44,10 @@ class Order {
     const rows = await db.query(`
       SELECT 
         od.*,
+        ga.id AS activity_id,
         ga.title AS activity_title,
         ga.group_size,
+        ug.id AS group_id,
         ug.creator_openid AS group_creator_openid,
         ug.members AS group_expire_time,
         ug.expire_time AS group_expire_time,

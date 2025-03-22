@@ -58,18 +58,10 @@ class GroupController {
   // 加入拼团
   static async joinGroup(req, res) {
     try {
-      const { id: groupId, openid: userOpenId } = req.params;
-      const group = await Group.findById(groupId);
-      if (!group) {
+      const { creatoropenid: creatorId, openid: userOpenId } = req.params;
+      const creatorOrder = await Order.findOrderByOpenId(creatorId);
+      if (!creatorOrder) {
         return res.status(404).json({ code: 404, msg: '拼团不存在' });
-      }
-
-      const members = JSON.parse(group.members);
-      if (members.includes(openid)) {
-        return res.status(400).json({ code: 400, msg: '已经参团了' });
-      }
-      if (members.length >= group.groupSize) {
-        return res.status(400).json({ code: 400, msg: '团已满了' });
       }
 
       const order = await Order.findOrderByOpenId(userOpenId);
@@ -81,14 +73,14 @@ class GroupController {
       await db.transaction(async (connection) => {
         // 扣减库存
         const stockUpdated = await Activity.decreaseStock(
-          group.activityId, 
+          creatorOrder.activity_id, 
           connection
         );
         if (!stockUpdated) throw new Error('STOCK_NOT_ENOUGH');
 
         // 添加成员
         await Group.addMemberWithConnection(
-          groupId, 
+          creatorOrder.group_id, 
           userOpenId, 
           connection
         );
@@ -97,8 +89,8 @@ class GroupController {
         await Order.createWithConnection(
           Order.generateOrderId(),
           userOpenId,
-          groupId,
-          group.price,
+          creatorOrder.group_id, 
+          amount, 
           connection
         );
       });

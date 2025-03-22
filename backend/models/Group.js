@@ -63,7 +63,7 @@ class Group {
         ug.*,
         ga.title,
         ga.price,
-        ga.group_size AS groupSize
+        ga.group_size,
       FROM user_group ug
       JOIN group_activity ga ON ug.activity_id = ga.id
       WHERE ug.id = ?
@@ -78,7 +78,7 @@ class Group {
           ug.*,
           ga.title,
           ga.price,
-          ga.group_size AS groupSize
+          ga.group_size,
         FROM user_group ug
         JOIN group_activity ga ON ug.activity_id = ga.id
         WHERE ug.id = ?
@@ -132,8 +132,7 @@ class Group {
             AND status = 0
             AND expire_time > NOW()
             AND JSON_SEARCH(members, 'one', ?) IS NULL
-            AND (SELECT COUNT(*) 
-                FROM JSON_LENGTH(members)) < group_size`,
+          `,
         [JSON.stringify(openid), id, openid]
       );
 

@@ -19,7 +19,7 @@ router.get('/activities/:id', ActivityController.getActivityDetail); // 获取�
 router.post('/groups/:actid/:openid/create', GroupController.createGroup); // 创建新拼团
 router.get('/groups', GroupController.listActiveGroups); // 获取可参与拼团列表
 router.get('/groups/:id', GroupController.getGroupDetail); // 获取拼团详情
-router.post('/groups/:id/:openid/join', GroupController.joinGroup); // 加入拼团
+router.post('/groups/:creatoropenid/:openid/join', GroupController.joinGroup); // 加入拼团
 
 router.get('/orders', GroupController.listOrders); // 获取所有订单
 router.get('/orders/:openid', GroupController.getOrderByOpenId); // 获取个人订单
