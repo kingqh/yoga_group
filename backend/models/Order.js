@@ -49,7 +49,7 @@ class Order {
         ga.group_size,
         ug.id AS group_id,
         ug.creator_openid AS group_creator_openid,
-        ug.members AS group_expire_time,
+        ug.members AS group_members,
         ug.expire_time AS group_expire_time,
         ug.created_at AS group_created_at
       FROM orders od
