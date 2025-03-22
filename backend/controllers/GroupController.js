@@ -31,19 +31,20 @@ class GroupController {
           connection
         );
 
-        const group = await Group.findByIdWithConnection(groupId, connection);
+        console.log('groupId is', groupId);
 
         // 创建订单记录
         await Order.createWithConnection(
           Order.generateOrderId(),
           creatorOpenId,
           groupId,
-          group.price,
+          activity.price,
           connection
         );
       });
 
-      res.json({ code: 200, data: group });
+      console.log('create group success');
+      res.json({ code: 200, msg: '建团成功' });
     } catch (err) {
       res.status(500).json({ code: 500, msg: err.message });
     }
