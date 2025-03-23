@@ -127,13 +127,13 @@ class Group {
             members = JSON_ARRAY_APPEND(
               members,
               '$',
-              CAST(? AS JSON)
+              ?)
           WHERE id = ?
             AND status = 0
             AND expire_time > NOW()
             AND JSON_SEARCH(members, 'one', ?) IS NULL
           `,
-        [JSON.stringify(openid), id, openid]
+        [openid, id, openid]
       );
 
       if (result.affectedRows === 0) {

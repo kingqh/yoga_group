@@ -98,3 +98,20 @@ UPDATE group_activity SET end_time = '2025-03-25 18:45:00' WHERE id = 1;
 
 DELETE FROM table_name; 删除所有行，并且有记录
 
+
+UPDATE user_group 
+          SET 
+            members = JSON_ARRAY_APPEND(
+              members,
+              '$',
+              'aaa')
+          WHERE id = 14
+            AND status = 0
+            AND JSON_SEARCH(members, 'one', 'aaa') IS NULL
+
+
+UPDATE user_group \n         
+ SET \n            
+ members = JSON_ARRAY_APPEND(\n              members,\n              \'$\',\n              CAST(\'\\"aaa\\"\' AS JSON)\n          WHERE id = 14\n            AND status = 0\n            AND expire_time > NOW()\n           
+  AND JSON_SEARCH(members, \'one\', \'aaa\') IS NULL\n     
+
