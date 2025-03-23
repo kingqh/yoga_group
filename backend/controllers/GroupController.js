@@ -90,7 +90,7 @@ class GroupController {
           Order.generateOrderId(),
           userOpenId,
           creatorOrder.group_id, 
-          amount, 
+          creatorOrder.amount, 
           connection
         );
       });
