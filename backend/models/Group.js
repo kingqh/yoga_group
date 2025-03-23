@@ -63,7 +63,7 @@ class Group {
         ug.*,
         ga.title,
         ga.price,
-        ga.group_size,
+        ga.group_size
       FROM user_group ug
       JOIN group_activity ga ON ug.activity_id = ga.id
       WHERE ug.id = ?
@@ -78,7 +78,7 @@ class Group {
           ug.*,
           ga.title,
           ga.price,
-          ga.group_size,
+          ga.group_size
         FROM user_group ug
         JOIN group_activity ga ON ug.activity_id = ga.id
         WHERE ug.id = ?
