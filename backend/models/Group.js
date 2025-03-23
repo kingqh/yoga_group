@@ -42,7 +42,7 @@ class Group {
   static async findActive() {
     const rows = await db.query(`
       SELECT 
-        ug.id, 
+        ug.*, 
         ga.title,
         ga.price,
         ga.group_size AS groupSize,
@@ -50,8 +50,6 @@ class Group {
         ug.expire_time AS expireTime
       FROM user_group ug
       JOIN group_activity ga ON ug.activity_id = ga.id
-      WHERE ug.status = 0 
-        AND ug.expire_time > NOW()
     `);
     return rows;
   }
@@ -129,8 +127,6 @@ class Group {
               '$',
               ?)
           WHERE id = ?
-            AND status = 0
-            AND expire_time > NOW()
             AND JSON_SEARCH(members, 'one', ?) IS NULL
           `,
         [openid, id, openid]
