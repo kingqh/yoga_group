@@ -1,0 +1,17 @@
+/* components/countdown/countdown.wxss */
+.countdown {
+  display: flex;
+  align-items: center;
+  color: #666;
+  font-size: 24rpx;
+}
+
+.time-item {
+  display: inline-block;
+  min-width: 40rpx;
+  text-align: center;
+  background: #f5f5f5;
+  border-radius: 6rpx;
+  padding: 4rpx 8rpx;
+  margin: 0 6rpx;
+}

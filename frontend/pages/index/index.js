@@ -23,7 +23,6 @@ Page({
     ]
   },
 
-   
   // 显示/隐藏海报菜单
   showPosterMenu() {
     this.setData({ showPosterMenu: !this.data.showPosterMenu })
@@ -154,5 +153,13 @@ Page({
       path: '/pages/index/index',
       imageUrl: '/images/share-cover.jpg'
     }
-  }
+  },
+
+  handleTimeup(e) {
+    const index = e.currentTarget.dataset.index
+    this.setData({
+      [`activityList[${index}].status`]: 2 // 更新状态为已结束
+    })
+  },
+  
 })

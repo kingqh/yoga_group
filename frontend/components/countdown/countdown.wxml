@@ -1,0 +1,7 @@
+<!-- components/countdown/countdown.wxml -->
+<view class="countdown">
+  <text wx:if="{{timeData.days > 0}}">{{timeData.days}}天</text>
+  <text class="time-item">{{timeData.hours}}</text>:
+  <text class="time-item">{{timeData.minutes}}</text>:
+  <text class="time-item">{{timeData.seconds}}</text>
+</view>
