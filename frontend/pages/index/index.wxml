@@ -31,12 +31,16 @@
       <!-- <image class="cover" src="{{item.cover}}" mode="aspectFill" /> -->
       <!-- 倒计时 -->
       <view class="countdown-box">
-        <text>剩余时间：</text>
-        <countdown 
-          end-time="{{item.endTime}}"
-          bind:timeup="handleTimeup"
-          data-index="{{index}}"
-        />
+        <text>活动结束倒计时:</text>
+        <van-count-down use-slot time="{{item.endTime}}" bind:change="onChange">
+          <text class="countdown-item">{{ timeData.days }}</text>
+          <text class="countdown-box-text">天</text>
+          <text class="countdown-item">{{ timeData.hours }}</text>
+          <text class="countdown-box-text">:</text>
+          <text class="countdown-item">{{ timeData.minutes }}</text>
+          <text class="countdown-box-text">:</text>
+          <text class="countdown-item">{{ timeData.seconds }}</text>
+        </van-count-down>
       </view>
       <view class="content">
         <view class="title">{{item.title}}</view>

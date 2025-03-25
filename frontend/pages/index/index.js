@@ -18,9 +18,10 @@ Page({
         originalPrice: 199,
         groupSize: 3,
         joined: 2,
-        endTime: '2025-03-31'
+        endTime: 30 * 60 * 60 * 1000,
       }
-    ]
+    ],
+    timeData: {},
   },
 
   // 显示/隐藏海报菜单
@@ -154,12 +155,12 @@ Page({
       imageUrl: '/images/share-cover.jpg'
     }
   },
-
-  handleTimeup(e) {
-    const index = e.currentTarget.dataset.index
+  
+  // 定时使用
+  onChange(e) {
     this.setData({
-      [`activityList[${index}].status`]: 2 // 更新状态为已结束
-    })
+      timeData: e.detail,
+    });
   },
   
 })

@@ -218,3 +218,30 @@ progress {
   color: #fff;
   min-width: 200rpx;
 }
+
+.countdown-item {
+  display: inline-block;
+  width: 22px;
+  margin-right: 5px;
+  margin-left: 5px;
+  color: #fff;
+  font-size: 12px;
+  text-align: center;
+  background-color: #1989fa;
+  border-radius: 2px;
+}
+
+.countdown-box {
+  display: flex;          /* 启用弹性布局 */
+  flex-direction: row;    /* 子元素横向排列（默认值，可省略） */
+  justify-content: center; /* 水平居中 */
+  align-items: center;    /* 垂直居中 */
+  width: 100%;            /* 按需设置宽度 */
+  font-size: 12px;
+  font-weight:bold
+}
+
+.countdown-box-text {
+  font-size: 12px;
+  font-weight:bold
+}

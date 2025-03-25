@@ -1,5 +1,5 @@
 {
   "usingComponents": {
-    "countdown": "/components/countdown/countdown"
+    "van-count-down": "/vant-components/count-down/index"
   }
 }
