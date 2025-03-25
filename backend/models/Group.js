@@ -47,7 +47,6 @@ class Group {
         ga.price,
         ga.group_size AS groupSize,
         JSON_LENGTH(ug.members) AS joined,
-        ug.expire_time AS expireTime
       FROM user_group ug
       JOIN group_activity ga ON ug.activity_id = ga.id
     `);

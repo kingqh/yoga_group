@@ -18,7 +18,7 @@ Page({
         originalPrice: 199,
         groupSize: 3,
         joined: 2,
-        endTime: '2023-12-31'
+        endTime: '2025-03-31'
       }
     ]
   },

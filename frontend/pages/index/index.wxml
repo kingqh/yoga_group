@@ -27,10 +27,8 @@
   </view>
   <!-- 拼团活动列表 -->
   <view class="activity-list">
-    <view wx:if="{{!endTime}}">--</view>
-    <countdown wx:else end-time="{{endTime}}" />
     <view wx:for="{{activityList}}" wx:key="id" class="activity-card">
-      <image class="cover" src="{{item.cover}}" mode="aspectFill" />
+      <!-- <image class="cover" src="{{item.cover}}" mode="aspectFill" /> -->
       <!-- 倒计时 -->
       <view class="countdown-box">
         <text>剩余时间：</text>
