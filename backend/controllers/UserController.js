@@ -19,7 +19,7 @@ class UserController {
     try {
       const { code } = req.body;
       const { openid, session_key } = code2Session(code);
-      res.json({ code: 200, data: {openid: openid} });
+      res.json({ code: 200, data: {openid: openid, session_key: session_key} });
       logger.info('get open id data: ', { openid });
     } catch (err) {
       res.status(500).json({ code: 500, msg: err.message });
