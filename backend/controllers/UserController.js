@@ -18,7 +18,7 @@ class UserController {
   static async code2id(req, res) {
     try {
       const { code } = req.body;
-      const openiddata = code2Session(code, encryptedData, iv);
+      const openiddata = code2Session(code);
       res.json({ code: 200, data: openiddata });
       logger.info('get open id data: ', { openiddata })
     } catch (err) {
