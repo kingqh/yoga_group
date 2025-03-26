@@ -47,7 +47,7 @@ async function code2Session(code) {
     throw handleWxError(data.errcode);
   }
 
-  logger.info('code2Session: ', data);
+  logger.info('code2Session: ', { data });
 
   return data;
 }
