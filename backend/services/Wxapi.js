@@ -5,13 +5,11 @@ const crypto = require('crypto');
 /**
  * 获取微信用户信息（openid + 解密用户数据）
  */
-async function getWechatUserInfo(code, encryptedData, iv) {
+async function getWechatUserInfo(openid, encryptedData, iv) {
   try {
-    // 1. 获取session_key和openid
-    const sessionInfo = await code2Session(code);
-    
-    // 2. 解密用户信息（如果有加密数据）
-    let userInfo = { openid: sessionInfo.openid };
+
+    // 解密用户信息（如果有加密数据）
+    let userInfo = { openid: openid };
     
     if (encryptedData && iv) {
       const decryptedData = decryptWxData(
@@ -93,5 +91,6 @@ function handleWxError(errcode) {
 }
 
 module.exports = {
-  getWechatUserInfo
+  getWechatUserInfo,
+  code2Session
 };

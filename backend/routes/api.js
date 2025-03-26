@@ -27,6 +27,7 @@ router.get('/orders/:openid', GroupController.getOrderByOpenId); // 获取个人
 
 // 用户登陆接口
 router.post('/users/login', UserController.login);
+router.post('/users/code2id', UserController.code2id);
 
 // 支付相关接口
 router.post('/payment/prepay', PaymentController.createPrepayOrder); // 创建支付订单

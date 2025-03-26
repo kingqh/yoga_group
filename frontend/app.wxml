@@ -1,0 +1,2 @@
+<button bindtap="onGetUserProfile">获取用户信息</button>
+
