@@ -38,7 +38,7 @@ async function code2Session(code) {
     grant_type: 'authorization_code'
   };
 
-  const { data } = await axios.get(
+  const data  = await axios.get(
     'https://api.weixin.qq.com/sns/jscode2session',
     { params }
   );
@@ -46,6 +46,8 @@ async function code2Session(code) {
   if (data.errcode) {
     throw handleWxError(data.errcode);
   }
+
+
 
   logger.info('code2Session: ', { data });
 
