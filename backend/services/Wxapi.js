@@ -47,12 +47,9 @@ async function code2Session(code) {
     throw handleWxError(data.errcode);
   }
 
-  logger.info('code2Session: ', data.openid);
+  logger.info('code2Session: ', data);
 
-  return {
-    openid: data.openid,
-    session_key: data.session_key
-  };
+  return data;
 }
 
 /**
