@@ -48,11 +48,9 @@ async function code2Session(code) {
   }
 
   logger.info('code2Session: ', { data });
+  const { openid } = data
 
-  return {
-    openid: data.openid,
-    session_key: data.session_key
-  };
+  return openid;
 }
 
 /**
