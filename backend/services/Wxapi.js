@@ -47,12 +47,12 @@ async function code2Session(code) {
     throw handleWxError(data.errcode);
   }
 
-  const {openid, session_key} = data
+  logger.info('code2Session: ', { data });
 
-  logger.info('code2Session: ', { openid });
-  logger.info('session_key: ', { session_key });
-
-  return openid;
+  return {
+    openid: data.openid,
+    session_key: data.session_key
+  };
 }
 
 /**
