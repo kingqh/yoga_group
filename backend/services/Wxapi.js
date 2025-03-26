@@ -33,8 +33,7 @@ async function code2Session(code) {
   const params = {
     appid: process.env.WX_APPID,
     secret: process.env.WX_SECRET,
-    js_code: code,
-    grant_type: 'authorization_code'
+    js_code: code
   };
 
   const { data } = await axios.get(
