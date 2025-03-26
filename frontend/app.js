@@ -13,23 +13,24 @@ App({
       this.globalData.isAuth = true;
     }
 
-    // 登录
+    // 登录获取 openid（不依赖用户授权）
     wx.login({
-      success: ({ code }) => {
-        console.log('AAA')
-        wx.getUserProfile({
-          desc: '用于完善会员信息',
-          success: ({ encryptedData, iv }) => {
-            // 发送code + encryptedData + iv到后端
-            wx.request({
-              url: '/api/users/login',
-              method: 'POST',
-              data: { code, encryptedData, iv }
-            })
-          }
-        })
+      success: (res) => {
+        if (res.code) {
+          // 发送 code 到后端换取 openid/session_key
+          console.log('res code is ', res.code)
+          wx.request({
+            url: 'https://kingqh.cn/api/users/code2id',
+            method: 'POST',
+            data: { code: res.code },
+            success: (res) => {
+              // 存储 openid，用于后续业务逻辑
+              wx.setStorageSync('openid', res.data.openid);
+            }
+          });
+        }
       }
-    })
+    });
   },
   globalData: {
     userInfo: null, // 全局存储用户信息

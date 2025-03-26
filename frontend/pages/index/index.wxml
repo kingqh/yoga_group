@@ -1,4 +1,10 @@
 <!-- pages/index/index.wxml 首页 -->
+<view wx:if="{{userInfo}}">
+  <image src="{{userInfo.avatarUrl}}"></image>
+  <text>{{userInfo.nickName}}</text>
+</view>
+
+<button wx:if="{{showAuthButton}}" bindtap="handleAuth">授权登录</button>
 <view class="container">
   <!-- 右侧悬浮海报生成按钮 -->
   <view class="fixed-poster" bindtap="showPosterMenu">
