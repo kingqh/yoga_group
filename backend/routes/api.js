@@ -24,6 +24,9 @@ router.post('/groups/:creatoropenid/:openid/join', GroupController.joinGroup); /
 router.get('/orders', GroupController.listOrders); // 获取所有订单
 router.get('/orders/:openid', GroupController.getOrderByOpenId); // 获取个人订单
 
+// 用户操作接口
+router.get('/users/:code/openid')
+
 // 支付相关接口
 router.post('/payment/prepay', PaymentController.createPrepayOrder); // 创建支付订单
 router.post('/payment/notify', PaymentController.handlePaymentNotify); // 支付回调
