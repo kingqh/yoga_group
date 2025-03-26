@@ -50,9 +50,8 @@ async function code2Session(code) {
   logger.info('code2Session: ', { data });
 
   return {
-    openid: data.openid,
-    unionid: data.unionid,
-    session_key: data.session_key
+    openid: data.data.openid,
+    session_key: data.data.session_key
   };
 }
 
