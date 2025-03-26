@@ -18,8 +18,8 @@ class UserController {
   static async code2id(req, res) {
     try {
       const { code } = req.body;
-      const { openid, session_key } = code2Session(code);
-      res.json({ code: 200, data: {openid: openid, session_key: session_key} });
+      const openid = code2Session(code);
+      res.json({ code: 200, data: {openid: openid} });
       logger.info('get open id data: ', { openid });
     } catch (err) {
       res.status(500).json({ code: 500, msg: err.message });

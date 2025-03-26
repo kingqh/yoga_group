@@ -52,7 +52,7 @@ async function code2Session(code) {
   logger.info('code2Session: ', { openid });
   logger.info('session_key: ', { session_key });
 
-  return data;
+  return openid;
 }
 
 /**
