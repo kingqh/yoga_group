@@ -38,35 +38,16 @@ class User {
   // 创建微信用户
   static async createUserWithConnection(wechatData) {
     try {
-      const sql = `
-        INSERT INTO user 
-          (openid, unionid, nickname, avatar, gender)
-        VALUES (?, ?, ?, ?, ?)
-        ON DUPLICATE KEY UPDATE
-          unionid = VALUES(unionid),
-          nickname = VALUES(nickname),
-          avatar = VALUES(avatar),
-          gender = VALUES(gender)
-      `;
-      const params = [
-        wechatData.openid,
-        wechatData.unionid || null,
-        wechatData.nickname,
-        wechatData.avatarUrl,
-        wechatData.gender || 0
-      ];
-
-      await connection.query(`
+      const [result] = await connection.query(`
       INSERT INTO user SET 
         openid = ?,
         unionid = ?,
         nickname = ?,
         avatar = ?,
         created_at = NOW(),
-
-    `, [orderId, openid, groupId, amount])
-      
-      const result = await db.execute(sql, params);
+        updated_at = NOW(),
+        login_number = 1
+    `, [wechatData.openid, '', wechatData.nickname, wechatData.avatar])
       return result.insertId;
     } catch (err) {
       throw new Error('用户创建失败');
