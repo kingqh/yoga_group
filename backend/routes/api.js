@@ -3,6 +3,7 @@ const router = express.Router();
 const GroupController = require('../controllers/GroupController');
 const ActivityController = require('../controllers/ActivityController');
 const PaymentController = require('../controllers/PaymentController');
+const UserController = require('../controllers/UserController');
 
 // 跨域支持（开发环境）
 router.use((req, res, next) => {
@@ -24,8 +25,8 @@ router.post('/groups/:creatoropenid/:openid/join', GroupController.joinGroup); /
 router.get('/orders', GroupController.listOrders); // 获取所有订单
 router.get('/orders/:openid', GroupController.getOrderByOpenId); // 获取个人订单
 
-// 用户操作接口
-router.post('/users/login', );
+// 用户登陆接口
+router.post('/users/login', UserController.login);
 
 // 支付相关接口
 router.post('/payment/prepay', PaymentController.createPrepayOrder); // 创建支付订单

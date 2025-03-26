@@ -8,8 +8,18 @@ App({
 
     // 登录
     wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+      success: ({ code }) => {
+        wx.getUserProfile({
+          desc: '用于完善会员信息',
+          success: ({ encryptedData, iv }) => {
+            // 发送code + encryptedData + iv到后端
+            wx.request({
+              url: 'https://kingqh.cn/api/users/login',
+              method: 'POST',
+              data: { code, encryptedData, iv }
+            })
+          }
+        })
       }
     })
   },
