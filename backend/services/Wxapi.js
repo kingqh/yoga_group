@@ -1,6 +1,7 @@
 // services/wxapi.js
 const axios = require('axios');
 const crypto = require('crypto');
+const logger = require('../log/logger');
 
 /**
  * 获取微信用户信息（openid + 解密用户数据）
@@ -45,6 +46,8 @@ async function code2Session(code) {
   if (data.errcode) {
     throw handleWxError(data.errcode);
   }
+
+  logger.info('code2Session: ', { data });
 
   return {
     openid: data.openid,
