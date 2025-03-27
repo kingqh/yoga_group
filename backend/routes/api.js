@@ -25,7 +25,9 @@ router.post('/groups/:creatoropenid/:openid/join', GroupController.joinGroup); /
 router.get('/orders', GroupController.listOrders); // 获取所有订单
 router.get('/orders/:openid', GroupController.getOrderByOpenId); // 获取个人订单
 
-// 用户登陆接口
+// 用户接口
+router.get('/users', UserController.listUsers);
+router.get('/users/:openid', UserController.getUserDetail);
 router.post('/users/login', UserController.login);
 router.post('/users/code2id', UserController.code2id);
 

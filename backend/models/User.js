@@ -36,10 +36,10 @@ class User {
   }
 
   // 创建微信用户
-  static async createUserWithConnection(wechatData) {
+  static async createUserWithConnection(openid, nickname, avatar, connection) {
     try {
       const [result] = await connection.query(`
-      INSERT INTO user SET 
+      INSERT INTO users SET 
         openid = ?,
         unionid = ?,
         nickname = ?,
@@ -47,11 +47,32 @@ class User {
         created_at = NOW(),
         updated_at = NOW(),
         login_number = 1
-    `, [wechatData.openid, '', wechatData.nickname, wechatData.avatar])
+    `, [openid, '', nickname, avatar])
       return result.insertId;
     } catch (err) {
       throw new Error('用户创建失败');
     }
   }
 
+  // 获取进行中的拼团列表
+  static async findUsers() {
+    const rows = await db.query(`
+      SELECT 
+        *
+      FROM users 
+    `);
+    return rows;
+  }
+
+  // 记录登陆次数
+  static async incrUserLoginNum(openid) {
+    await db.query(`
+      UPDATE users 
+      SET login_number = login_number + 1 
+      WHERE openid = ?
+    `, [openid]);
+  }  
+
 }
+
+module.exports = User;
