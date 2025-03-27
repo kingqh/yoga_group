@@ -8,8 +8,9 @@ class UserController {
   static async login(req, res) {
     try {
       const { openid, nickname, avatar } = req.body;
-      logger.info('get user input openid: ', { openid });
-      logger.info('get user input encryptedData: ', { encryptedData });
+      logger.info('login user input openid: ', { openid });
+      logger.info('login user input nickname: ', { nickname });
+      logger.info('login user input avatar: ', { avatar });
       // 事务操作
       await db.transaction(async (connection) => {
         const user = await User.getUserByOpenidWithConnection(openid, connection);
