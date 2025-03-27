@@ -14,7 +14,7 @@ class UserController {
       // 事务操作
       await db.transaction(async (connection) => {
         const user = await User.getUserByOpenidWithConnection(openid, connection);
-        if (!user) {
+        if (!user || (Array.isArray(user) && user.length === 0)) {
           await User.createUserWithConnection(
             openid, 
             nickname, 
