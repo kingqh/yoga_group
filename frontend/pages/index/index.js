@@ -4,40 +4,21 @@ const POSTER_HEIGHT = 1000 // 海报高度
 const app = getApp();
 
 Page({
-  // onLoad() {
-  //   if (app.globalData.isAuth) {
-  //     // 已授权：直接使用全局数据
-  //     this.setData({ userInfo: app.globalData.userInfo });
-  //   } else {
-  //     // 未授权：显示授权按钮
-  //     this.setData({ showAuthButton: true });
-  //   }
-  // },
-  // 用户点击授权按钮
-  handleAuth() {
-    wx.getUserProfile({
-      desc: '用于展示用户信息',
-      success: ({ encryptedData, iv }) => {
-        wx.request({
-          url: 'https://kingqh.cn/api/users/login',
-          method: 'POST',
-          data: { openid: wx.getStorageSync('openid'),  session_key: wx.getStorageSync('session_key'), encryptedData, iv },
-          success: (res) => {
-            // 存储 openid，用于后续业务逻辑
-            console.log('login data is ', res);
-          }
-        });
-        // 更新全局数据和缓存
-        // app.globalData.userInfo = res.userInfo;
-        // app.globalData.isAuth = true;
-        // console.log('get userinfo ', res)
-        // wx.setStorageSync('userInfo', res.userInfo);
-        // this.setData({ userInfo: res.userInfo, showAuthButton: false });
-      }
-    });
+  onLoad() {
+    if (app.globalData.isAuth) {
+      // 已授权：直接使用全局数据
+      console.log('cache userinfo: ', app.globalData.userInfo);
+      this.setData({ userInfo: app.globalData.userInfo });
+    } else {
+      // 未授权：显示授权按钮
+      console.log('show auth modal ');
+      this.showAuthModal();
+    }
   },
   data: {
-    showAuthButton: true,
+    showLoginModal: false,
+    countdown: 3,
+    modalAnimation: {},
     showPosterMenu: false,
     showPoster: false,
     canvasWidth: POSTER_WIDTH,
@@ -57,6 +38,83 @@ Page({
     ],
     timeData: {},
   },
+  /* 授权登陆弹窗相关 start */
+  // 用户点击授权按钮
+  getUserProfile(e) {
+    wx.getUserProfile({
+      desc: '用于展示用户信息',
+      success: (res) => {
+        console.log('opid is ', wx.getStorageSync('openid'));
+        console.log('sk is ', wx.getStorageSync('session_key'));
+        wx.request({
+          url: 'https://kingqh.cn/api/users/login',
+          method: 'POST',
+          data: { openid: wx.getStorageSync('openid'),  nickname: res.userInfo.nickName, avatar: res.userInfo.avatarUrl },
+          success: (rr) => {
+                    // 更新全局数据和缓存
+                    app.globalData.userInfo = res.userInfo;
+                    app.globalData.isAuth = true;
+                    console.log('get userinfo ', res);
+                    wx.setStorageSync('userInfo', res.userInfo);
+                    this.setData({ userInfo: res.userInfo});
+                    this.startCountdown();
+          },
+          fail: (err) => {
+            wx.showToast({ title: '授权失败', icon: 'none' })
+            this.closeModal()
+          }
+        });
+      }
+    });
+  },
+  // 显示授权弹窗
+  showAuthModal() {
+    this.createAnimation(true)
+    this.setData({ showLoginModal: true })
+  },
+
+  // 创建动画效果
+  createAnimation(show) {
+    const animation = wx.createAnimation({
+      duration: 300,
+      timingFunction: 'ease'
+    })
+    
+    if (show) {
+      animation.translateY(0).opacity(1).step()
+    } else {
+      animation.translateY(100).opacity(0).step()
+    }
+    
+    this.setData({ modalAnimation: animation.export() })
+  },
+
+  // 开始关闭倒计时
+  startCountdown() {
+    let count = 3
+    const timer = setInterval(() => {
+      if (count <= 0) {
+        clearInterval(timer)
+        this.closeModal()
+        return
+      }
+      this.setData({ countdown: count })
+      count--
+    }, 1000)
+  },
+
+  // 关闭弹窗
+  closeModal() {
+    this.createAnimation(false)
+    setTimeout(() => {
+      this.setData({ 
+        showLoginModal: false,
+        countdown: 3
+      })
+    }, 300)
+  },
+
+  /* 授权登陆弹窗相关 start */
 
   // 显示/隐藏海报菜单
   showPosterMenu() {

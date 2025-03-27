@@ -1,10 +1,31 @@
 <!-- pages/index/index.wxml 首页 -->
-<!-- <view wx:if="{{userInfo}}">
-  <image src="{{userInfo.avatarUrl}}"></image>
-  <text>{{userInfo.nickName}}</text>
-</view> -->
+<!-- 授权弹窗 -->
+<view class="modal-mask" wx:if="{{showLoginModal}}" catchtouchmove="preventTouchMove">
+  <view class="auth-modal" animation="{{modalAnimation}}">
+    <view class="modal-content">
+      <!-- 未授权时显示 -->
+      <block wx:if="{{!userInfo}}">
+        <image class="auth-icon" src="/images/login-icon.png"></image>
+        <view class="modal-title">请先授权登录</view>
+        <button 
+          class="auth-btn"
+          open-type="getUserProfile"
+          bindtap="getUserProfile"
+        >
+          微信一键登录
+        </button>
+      </block>
 
-<button wx:if="{{showAuthButton}}" bindtap="handleAuth">授权登录</button>
+      <!-- 已授权时显示 -->
+      <block wx:else>
+        <image class="user-avatar" src="{{userInfo.avatarUrl}}"></image>
+        <view class="user-name">{{userInfo.nickName}}</view>
+        <view class="close-tip">{{countdown}}秒后自动关闭</view>
+      </block>
+    </view>
+  </view>
+</view>
+
 <view class="container">
   <!-- 右侧悬浮海报生成按钮 -->
   <view class="fixed-poster" bindtap="showPosterMenu">
