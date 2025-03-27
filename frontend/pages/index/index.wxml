@@ -69,6 +69,11 @@
           <text class="countdown-item">{{ timeData.seconds }}</text>
         </van-count-down>
       </view>
+       <!-- 用户展示图 -->
+      <group-user-display 
+        stats="{{statsData}}"
+        users="{{recentUsers}}"
+      />
       <view class="content">
         <view class="title">{{item.title}}</view>
         

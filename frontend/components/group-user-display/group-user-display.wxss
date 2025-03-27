@@ -1,0 +1,93 @@
+/* components/group-user-display/group-user-display.wxss */
+.container {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.08);
+}
+
+.stats-container {
+  display: flex;
+  justify-content: space-around;
+  padding: 20rpx 0;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-number {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.stat-label {
+  font-size: 24rpx;
+  color: #666;
+}
+
+.divider {
+  height: 1rpx;
+  background: #eee;
+  margin: 24rpx 0;
+}
+
+/* 第一排样式 */
+.first-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40rpx;
+}
+
+.first-row .avatar {
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50%;
+  /* border: 4rpx solid #fff; */
+  box-shadow: 8rpx 0 16rpx rgba(0,0,0,0.08);
+}
+
+/* 第二排布局 */
+.second-row {
+  height: 140rpx;
+  position: relative;
+  overflow: hidden;
+}
+
+.default-avatar {
+  position: absolute;
+  /* left: 60rpx; */
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50%;
+  background: rgb(226, 161, 161);
+  border: 4rpx solid #fff;
+  box-shadow: 8rpx 0 16rpx rgba(0,0,0,0.08);
+  z-index: 2;
+}
+
+/* 轮播轨道 */
+.track {
+  display: flex;
+  position: absolute;
+  left: 120rpx;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.carousel-avatar {
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50%;
+  margin-right: 30rpx;
+  transition: transform 0.3s;
+  box-shadow: 8rpx 0 16rpx rgba(0,0,0,0.08);
+}
+
+/* 通过负z-index实现层级控制 */
+.carousel-avatar {
+  position: relative;
+  z-index: -1;
+}

@@ -37,6 +37,22 @@ Page({
       }
     ],
     timeData: {},
+    statsData: {
+      viewCount: 235,
+      joinCount: 48,
+      shareCount: 32
+    },
+    recentUsers: [
+      { id: 1, avatarUrl: '/images/user.jpeg' },
+      { id: 2, avatarUrl: '/images/user2.jpeg' },
+      { id: 3, avatarUrl: '/images/user3.jpeg' },
+      { id: 4, avatarUrl: '/images/user4.jpeg' },
+      { id: 5, avatarUrl: '/images/user5.jpeg' },
+      { id: 6, avatarUrl: '/images/user6.jpeg' },
+      { id: 7, avatarUrl: '/images/user7.jpeg' },
+      { id: 8, avatarUrl: '/images/user8.jpeg' },
+      { id: 9, avatarUrl: '/images/user9.jpeg' }
+    ],
   },
   /* 授权登陆弹窗相关 start */
   // 用户点击授权按钮

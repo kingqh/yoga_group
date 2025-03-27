@@ -1,0 +1,54 @@
+<!-- components/group-user-display/group-user-display.wxml -->
+<view class="container">
+  <!-- 上半部分：数据汇总 -->
+  <view class="stats-container">
+    <view class="stat-item">
+      <text class="stat-number">{{stats.viewCount}}</text>
+      <text class="stat-label">已浏览</text>
+    </view>
+    <view class="stat-item">
+      <text class="stat-number">{{stats.joinCount}}</text>
+      <text class="stat-label">已报名</text>
+    </view>
+    <view class="stat-item">
+      <text class="stat-number">{{stats.shareCount}}</text>
+      <text class="stat-label">已分享</text>
+    </view>
+  </view>
+
+  <!-- 分割线 -->
+  <view class="divider"></view>
+
+  <!-- 下半部分：用户头像轮播 -->
+  <!-- 第一排固定头像 -->
+  <view class="first-row">
+    <block wx:for="{{firstRowAvatars}}" wx:key="id">
+      <image 
+        src="{{item.avatarUrl || '/images/default-avatar.png'}}" 
+        class="avatar" 
+        mode="aspectFill"
+      />
+    </block>
+  </view>
+
+  <!-- 第二排轮播 -->
+  <view class="second-row">
+    <!-- 默认头像容器（作为遮罩层） -->
+    <image 
+        class="default-avatar" 
+        src="/images/default-avatar.png"
+      />
+
+    <!-- 轮播轨道 -->
+    <view class="track" style="transform: translateX({{offset}}rpx);">
+      <block wx:for="{{carouselList}}" wx:key="id">
+        <image 
+          class="carousel-avatar" 
+          src="{{item.avatarUrl}}"
+          style="z-index: {{-index}};" 
+          mode="aspectFill"
+        />
+      </block>
+    </view>
+  </view>
+</view>

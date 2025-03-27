@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "van-count-down": "/vant-components/count-down/index"
+    "van-count-down": "/vant-components/count-down/index",
+    "group-user-display": "/components/group-user-display/group-user-display"
   }
 }
