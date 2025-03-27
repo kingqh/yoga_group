@@ -6,14 +6,13 @@ class User {
   // 根据openid获取用户信息
   static async getUserByOpenid(openid) {
     try {
-      const sql = `
+      const rows = await db.query(`
         SELECT 
-          *
+        *
         FROM user 
         WHERE openid = ?
-      `;
-      const users = await db.query(sql, [openid]);
-      return users[0] || null;
+      `, [openid]);
+      return rows[0] || null;
     } catch (err) {
       throw new Error('用户查询失败');
     }
@@ -22,14 +21,13 @@ class User {
   // 根据openid获取用户信息
   static async getUserByOpenidWithConnection(openid, connection) {
     try {
-      const sql = `
+      const rows = await connection.query(`
         SELECT 
-          *
-        FROM users 
+        *
+        FROM user 
         WHERE openid = ?
-      `;
-      const users = await connection.query(sql, [openid]);
-      return users[0] || null;
+      `, [openid]);
+      return rows[0] || null;
     } catch (err) {
       throw new Error('用户查询失败');
     }
