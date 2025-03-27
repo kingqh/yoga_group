@@ -7,8 +7,10 @@ class UserController {
   static async login(req, res) {
     try {
       const { openid, session_key, encryptedData, iv } = req.body;
-      const userData = await getWechatUserInfo(openid, encryptedData, iv);
-      logger.info('get user data: ', { userData })
+      logger.info('get user input openid: ', { openid });
+      logger.info('get user input encryptedData: ', { encryptedData });
+      const userData = await getWechatUserInfo(openid, session_key, encryptedData, iv);
+      logger.info('get user data: ', { userData });
     } catch (err) {
       res.status(500).json({ code: 500, msg: err.message });
     }

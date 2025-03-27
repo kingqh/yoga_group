@@ -4,29 +4,40 @@ const POSTER_HEIGHT = 1000 // 海报高度
 const app = getApp();
 
 Page({
-  onLoad() {
-    if (app.globalData.isAuth) {
-      // 已授权：直接使用全局数据
-      this.setData({ userInfo: app.globalData.userInfo });
-    } else {
-      // 未授权：显示授权按钮
-      this.setData({ showAuthButton: true });
-    }
-  },
+  // onLoad() {
+  //   if (app.globalData.isAuth) {
+  //     // 已授权：直接使用全局数据
+  //     this.setData({ userInfo: app.globalData.userInfo });
+  //   } else {
+  //     // 未授权：显示授权按钮
+  //     this.setData({ showAuthButton: true });
+  //   }
+  // },
   // 用户点击授权按钮
   handleAuth() {
     wx.getUserProfile({
       desc: '用于展示用户信息',
-      success: (res) => {
+      success: ({ encryptedData, iv }) => {
+        wx.request({
+          url: 'https://kingqh.cn/api/users/login',
+          method: 'POST',
+          data: { openid: wx.getStorageSync('openid'),  session_key: wx.getStorageSync('session_key'), encryptedData, iv },
+          success: (res) => {
+            // 存储 openid，用于后续业务逻辑
+            console.log('login data is ', res);
+          }
+        });
         // 更新全局数据和缓存
-        app.globalData.userInfo = res.userInfo;
-        app.globalData.isAuth = true;
-        wx.setStorageSync('userInfo', res.userInfo);
-        this.setData({ userInfo: res.userInfo, showAuthButton: false });
+        // app.globalData.userInfo = res.userInfo;
+        // app.globalData.isAuth = true;
+        // console.log('get userinfo ', res)
+        // wx.setStorageSync('userInfo', res.userInfo);
+        // this.setData({ userInfo: res.userInfo, showAuthButton: false });
       }
     });
   },
   data: {
+    showAuthButton: true,
     showPosterMenu: false,
     showPoster: false,
     canvasWidth: POSTER_WIDTH,

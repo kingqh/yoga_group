@@ -25,8 +25,9 @@ App({
             data: { code: res.code },
             success: (res) => {
               // 存储 openid，用于后续业务逻辑
-              console.log('res openid is ', res.data)
-              wx.setStorageSync('openid', res.data);
+              console.log('res openid is ', res.data);
+              wx.setStorageSync('openid', res.data.openid);
+              wx.setStorageSync('session_key', res.data.session_key);
             }
           });
         }
