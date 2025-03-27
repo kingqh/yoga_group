@@ -9,7 +9,7 @@ class User {
       const rows = await db.query(`
         SELECT 
         *
-        FROM user 
+        FROM users 
         WHERE openid = ?
       `, [openid]);
       return rows[0] || null;
@@ -24,7 +24,7 @@ class User {
       const rows = await connection.query(`
         SELECT 
         *
-        FROM user 
+        FROM users 
         WHERE openid = ?
       `, [openid]);
       return rows[0] || null;
