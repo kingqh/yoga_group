@@ -6,7 +6,7 @@ const logger = require('../log/logger');
 /**
  * 获取微信用户信息（openid + 解密用户数据）
  */
-async function getWechatUserInfo(openid, encryptedData, iv) {
+async function getWechatUserInfo(openid, session_key, encryptedData, iv) {
   try {
 
     // 解密用户信息（如果有加密数据）
@@ -16,7 +16,7 @@ async function getWechatUserInfo(openid, encryptedData, iv) {
       const decryptedData = decryptWxData(
         encryptedData,
         iv,
-        sessionInfo.session_key
+        session_key
       );
       userInfo = { ...userInfo, ...decryptedData };
     }
@@ -48,9 +48,8 @@ async function code2Session(code) {
   }
 
   logger.info('code2Session: ', { data });
-  const { openid } = data
 
-  return openid;
+  return data;
 }
 
 /**

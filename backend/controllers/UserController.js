@@ -6,7 +6,7 @@ class UserController {
   // 解密用户详细信息
   static async login(req, res) {
     try {
-      const { openid, encryptedData, iv } = req.body;
+      const { openid, session_key, encryptedData, iv } = req.body;
       const userData = await getWechatUserInfo(openid, encryptedData, iv);
       logger.info('get user data: ', { userData })
     } catch (err) {
@@ -18,9 +18,10 @@ class UserController {
   static async code2id(req, res) {
     try {
       const { code } = req.body;
-      const openid = await code2Session(code);
-      logger.info('get open id data: ', { openid });
-      res.json({ code: 200, data: openid });
+      const { openid, session_key } = await code2Session(code);
+      logger.info('code2id openid: ', { openid });
+      logger.info('code2id session_key: ', { session_key });
+      res.json({ code: 200, data:  { openid, session_key } });
     } catch (err) {
       res.status(500).json({ code: 500, msg: err.message });
     }
