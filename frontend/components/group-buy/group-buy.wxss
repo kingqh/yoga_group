@@ -1,0 +1,118 @@
+/* components/group-buy/group-buy.wxss */
+.container {
+  padding: 20rpx;
+  background: #fff;
+  border-radius: 16rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.1);
+}
+
+/* 顶部信息区域 */
+.top-section {
+  display: flex;
+  margin-bottom: 30rpx;
+}
+
+.poster {
+  width: 240rpx;
+  height: 240rpx;
+  border-radius: 8rpx;
+  margin-right: 20rpx;
+}
+
+.right-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 12rpx;
+}
+
+.subtitle {
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20rpx;
+}
+
+.price-box {
+  display: flex;
+  align-items: baseline;
+}
+
+.price-label {
+  font-size: 24rpx;
+  color: #999;
+  margin-right: 12rpx;
+}
+
+.price {
+  font-size: 42rpx;
+  color: #e64340;
+  font-weight: bold;
+}
+
+/* 拼团选项区域 */
+.group-options {
+  width: 100vw; /* 关键修改 */
+  margin-left: -30rpx; /* 抵消页面边距 */
+}
+
+/* 内容容器 */
+.options-container {
+  display: inline-flex;
+  padding-left: 30rpx; /* 恢复边距 */
+}
+
+/* 拼团项 */
+.option-item {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 140rpx;
+  background: #fff;
+  border-radius: 8rpx;
+  padding: 0 40rpx;
+  margin-right: 30rpx;
+  flex-shrink: 0;  /* 关键属性 */
+  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.1);
+}
+
+/* 滚动触发占位 */
+.scroll-padding {
+  width: 30rpx;
+  height: 1rpx;
+  flex-shrink: 0;
+}
+
+.people-count {
+  font-size: 28rpx;
+  color: #333;
+  margin-bottom: 12rpx;
+}
+
+.group-price {
+  font-size: 36rpx;
+  color: #e64340;
+  font-weight: bold;
+}
+
+/* 操作按钮 */
+.action-btn {
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  background: #e64340;
+  color: #fff;
+  font-size: 34rpx;
+  border-radius: 44rpx;
+  margin-top: 30rpx;
+}
+
+.action-btn:active {
+  background: #ce3c39;
+}

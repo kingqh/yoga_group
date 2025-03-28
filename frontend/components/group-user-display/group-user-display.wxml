@@ -1,5 +1,5 @@
 <!-- components/group-user-display/group-user-display.wxml -->
-<view class="container">
+<view>
   <!-- 上半部分：数据汇总 -->
   <view class="stats-container">
     <view class="stat-item">

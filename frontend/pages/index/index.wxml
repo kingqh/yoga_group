@@ -26,7 +26,7 @@
   </view>
 </view>
 
-<view class="container">
+<view class="page bg-gradual-orange">
   <!-- 右侧悬浮海报生成按钮 -->
   <view class="fixed-poster" bindtap="showPosterMenu">
     <image src="/images/icon-poster.png" class="poster-icon" />
@@ -53,8 +53,8 @@
     </view>
   </view>
   <!-- 拼团活动列表 -->
-  <view class="activity-list">
-    <view wx:for="{{activityList}}" wx:key="id" class="activity-card">
+  <view class="activity-card">
+    <view wx:for="{{activityList}}" wx:key="id">
       <!-- <image class="cover" src="{{item.cover}}" mode="aspectFill" /> -->
       <!-- 倒计时 -->
       <view class="countdown-box">
@@ -70,49 +70,15 @@
         </van-count-down>
       </view>
        <!-- 用户展示图 -->
-      <group-user-display 
-        stats="{{statsData}}"
-        users="{{recentUsers}}"
-      />
-      <view class="content">
-        <view class="title">{{item.title}}</view>
-        
-        <!-- 价格展示 -->
-        <view class="price-box">
-          <text class="current">拼团价 ¥{{item.price}}</text>
-          <text class="original">¥{{item.originalPrice}}</text>
-        </view>
-
-        <!-- 成团进度 -->
-        <view class="progress-box">
-          <progress 
-            percent="{{(item.joined / item.groupSize) * 100}}" 
-            stroke-width="4" 
-            activeColor="#FF6B6B"
-          />
-          <text class="progress-text">
-            已有{{item.joined}}人参与，还需{{item.groupSize - item.joined}}人成团
-          </text>
-        </view>
-
-        <!-- 操作按钮 -->
-        <view class="action-box">
-          <button 
-            class="join-btn" 
-            bindtap="handleJoinGroup" 
-            data-id="{{item.id}}"
-          >
-            立即参团
-          </button>
-          <button 
-            class="create-btn" 
-            bindtap="handleCreateGroup" 
-            data-id="{{item.id}}"
-          >
-            发起新团
-          </button>
-        </view>
-      </view>
+       <view class="group-card">
+        <group-user-display 
+          stats="{{statsData}}"
+          users="{{recentUsers}}"
+        />
+       </view>
+       <view class="group-card">
+        <group-buy bind:createGroup="onCreateGroup" />
+       </view>
     </view>
   </view>
 </view>

@@ -270,5 +270,14 @@ Page({
       timeData: e.detail,
     });
   },
+
+  // 处理开团事件
+  onCreateGroup() {
+    wx.showToast({
+      title: '开团逻辑处理中...',
+      icon: 'none'
+    })
+  },
+      
   
 })

@@ -1,0 +1,51 @@
+<!-- components/group-buy/group-buy.wxml -->
+<view>
+  <!-- 第一部分：海报图+价格 -->
+  <view class="top-section">
+    <image 
+      class="poster"
+      src="/images/curse01.jpeg"
+      mode="aspectFill"
+    />
+    <view class="right-info">
+      <text class="title">沙河高教园超值特惠</text>
+      <text class="subtitle">399元抢高级瑜伽课</text>
+      <view class="price-box">
+        <text class="price-label">拼团价</text>
+        <text class="price">¥399</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 第二部分：可滑动拼团选项 -->
+  <scroll-view class="group-options" scroll-x>
+    <view class="options-container">  
+      <view class="option-item">
+        <text class="people-count">1人团</text>
+        <text class="group-price">¥299</text>
+      </view>
+      <view class="option-item">
+        <text class="people-count">2人团</text>
+        <text class="group-price">¥299</text>
+      </view>
+      <view class="option-item">
+        <text class="people-count">3人团</text>
+        <text class="group-price">¥299</text>
+      </view>
+      <view class="option-item">
+        <text class="people-count">5人团</text>
+        <text class="group-price">¥299</text>
+      </view>
+      <view class="option-item">
+        <text class="people-count">8人团</text>
+        <text class="group-price">¥299</text>
+      </view>
+      <view class="scroll-padding"></view>
+    </view>
+  </scroll-view>
+
+  <!-- 第三部分：开团按钮 -->
+  <view class="action-btn" bindtap="handleCreateGroup">
+    立即开团
+  </view>
+</view>
