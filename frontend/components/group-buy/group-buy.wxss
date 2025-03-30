@@ -26,16 +26,16 @@
 }
 
 .title {
-  font-size: 28rpx;
+  font-size: 30rpx;
   color: #666;
-  margin-bottom: 12rpx;
+  margin-bottom: 15rpx;
 }
 
 .subtitle {
-  font-size: 34rpx;
+  font-size: 40rpx;
   font-weight: bold;
   color: #333;
-  margin-bottom: 20rpx;
+  margin-bottom: 25rpx;
 }
 
 .price-box {

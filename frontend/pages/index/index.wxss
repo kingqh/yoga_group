@@ -12,6 +12,28 @@
   justify-content: center;
 }
 
+.group-title-card {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 10rpx;
+  margin-top: 30rpx;
+  margin-left: 30rpx;
+  margin-right: 30rpx;
+  margin-bottom: 30rpx;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200rpx;
+}
+
+.activity-title {
+  font-size: 35rpx;
+  font-weight: bold;
+  color: #e64340;
+  text-align: center; 
+}
+
 .cover {
   width: 100%;
   height: 1200rpx;
@@ -310,3 +332,53 @@ progress {
   font-size: 24rpx;
 }
 /* 授权登陆 csss 结束 */
+
+/* 页面最下方全局开团按钮 */
+
+/* 页面最下方全局开团按钮结束 */
+
+.fixed-container {
+  position: fixed;
+  z-index: 3;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  background: #fff;
+  box-shadow: 0 -2rpx 10rpx rgba(0,0,0,0.1);
+  /* 适配iPhoneX等底部安全区域 */
+  padding-bottom: calc(15rpx + env(safe-area-inset-bottom));
+}
+
+.global-btn {
+  flex: 3;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  font-size: 34rpx;
+}
+
+.left-btn {
+  background: #ff4444;
+  color: white;
+}
+
+.right-btn {
+  background: #ffd700;
+  color: #333;
+}
+
+/* 文字动画 */
+.animate-text {
+  animation: textScale 1s ease-in-out infinite;
+}
+
+@keyframes textScale {
+  0%, 100% {
+    font-size: 32rpx;
+  }
+  50% {
+    font-size: 36rpx;
+  }
+}
+

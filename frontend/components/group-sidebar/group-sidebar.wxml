@@ -1,0 +1,32 @@
+<!-- components/sidebar/sidebar.wxml -->
+<view class="sidebar-container">
+ 
+  <!-- 侧边栏主体 -->
+  <view class="sidebar {{isSidebarOpen ? 'open' : ''}}">
+    <block wx:for="{{menuItems}}" wx:key="index">
+      <view class="menu-divide"></view>
+      <view class="menu-item" bindtap="handleMenuItemTap" data-index="{{index}}">
+        <image src="{{item.type === 'music' ? (isMusicPlaying ? item.icon.on : item.icon.off) : item.icon}}"  class="menu-icon"></image>
+        <text wx:if="{{item.text}}" class="menu-text">{{item.text}}</text>
+      </view>
+    </block>
+  </view>
+
+  <!-- 商家信息弹窗 -->
+  <view class="modal {{showContactModal ? 'show' : ''}}">
+    <view class="modal-content">
+      <view class="modal-header">
+        <text>{{contactTitle}}</text>
+        <view class="close-btn" bindtap="hideContact">×</view>
+      </view>
+      <view class="contact-list">
+        <block wx:for="{{contacts}}" wx:key="index">
+          <view class="contact-item">
+            <image src="{{item.icon}}" class="contact-icon"></image>
+            <text>{{item.info}}</text>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+</view>

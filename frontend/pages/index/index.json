@@ -2,6 +2,7 @@
   "usingComponents": {
     "van-count-down": "/vant-components/count-down/index",
     "group-user-display": "/components/group-user-display/group-user-display",
-    "group-buy": "/components/group-buy/group-buy"
+    "group-buy": "/components/group-buy/group-buy",
+    "group-sidebar": "/components/group-sidebar/group-sidebar"
   }
 }

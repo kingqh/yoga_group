@@ -1,6 +1,4 @@
 // pages/index/index.js
-const POSTER_WIDTH = 600 // 海报宽度
-const POSTER_HEIGHT = 1000 // 海报高度
 const app = getApp();
 
 Page({
@@ -19,11 +17,6 @@ Page({
     showLoginModal: false,
     countdown: 3,
     modalAnimation: {},
-    showPosterMenu: false,
-    showPoster: false,
-    canvasWidth: POSTER_WIDTH,
-    canvasHeight: POSTER_HEIGHT,
-    posterData: null, // 海报数据缓存
     activityList: [
       {
         id: 1,
@@ -277,6 +270,23 @@ Page({
       title: '开团逻辑处理中...',
       icon: 'none'
     })
+  },
+
+  // 处理海报生成页面
+  handleGeneratePoster() {
+    wx.showToast({
+      title: '生成海报页面开发中...',
+      icon: 'none'
+    })
+  },
+
+  // grou-sidebar 监听
+  handleGroupSidebarTouchMove() {
+    const component = this.selectComponent('#groupSidebar');
+    if (component) {
+      // 调用组件内的方法，传递滑动数据
+      component.handleTouchMove();
+    }
   },
       
   

@@ -26,36 +26,14 @@
   </view>
 </view>
 
-<view class="page bg-gradual-orange">
-  <!-- 右侧悬浮海报生成按钮 -->
-  <view class="fixed-poster" bindtap="showPosterMenu">
-    <image src="/images/icon-poster.png" class="poster-icon" />
-  </view>
-
-  <!-- 海报生成菜单 -->
-  <view class="poster-menu" wx:if="{{showPosterMenu}}">
-    <view class="menu-item" bindtap="handleGeneratePoster">
-      <image src="/images/icon-camera.png" />
-      <text>生成海报</text>
-    </view>
-  </view>
-
-  <!-- 海报预览层 -->
-  <view class="poster-modal" wx:if="{{showPoster}}">
-    <canvas 
-      canvas-id="posterCanvas" 
-      class="canvas"
-      style="width: {{canvasWidth}}px; height: {{canvasHeight}}px;"
-    ></canvas>
-    <view class="action-btns">
-      <button class="save-btn" bindtap="savePoster">保存到相册</button>
-      <button class="close-btn" bindtap="closePoster">关闭</button>
-    </view>
-  </view>
+<view class="page bg-gradual-orange" bindtouchmove="handleGroupSidebarTouchMove">
   <!-- 拼团活动列表 -->
   <view class="activity-card">
     <view wx:for="{{activityList}}" wx:key="id">
-      <!-- <image class="cover" src="{{item.cover}}" mode="aspectFill" /> -->
+      <image class="cover" src="{{item.cover}}" mode="aspectFill" />
+      <view class="group-title-card">
+          <text class="activity-title">【沙河高教园超值特惠】399元抢瑜伽馆7天训练营+6节高端课!</text>
+      </view>
       <!-- 倒计时 -->
       <view class="countdown-box">
         <text>活动结束倒计时:</text>
@@ -76,9 +54,22 @@
           users="{{recentUsers}}"
         />
        </view>
+       
+       <!-- 用户团购图 -->
        <view class="group-card">
         <group-buy bind:createGroup="onCreateGroup" />
        </view>
+
+       <image class="cover" src="{{item.cover}}" mode="aspectFill" />
     </view>
   </view>
 </view>
+
+<!-- 全局开团按钮 --> 
+<view class="fixed-container">
+  <view class="global-btn left-btn">¥399 立即开团</view>
+  <view class="global-btn right-btn animate-text">参与好友团</view>
+</view>
+
+<!-- 侧边栏菜单 --> 
+<group-sidebar id="groupSidebar" bind:generateposter="handleGeneratePoster" />
