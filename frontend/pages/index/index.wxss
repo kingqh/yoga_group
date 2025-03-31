@@ -1,5 +1,72 @@
 /* pages/index/index.wxss 首页样式 */
 
+/* 海报样式 */
+.poster-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+}
+
+.poster-modal-mask {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+}
+
+.poster-modal-content {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  background: white;
+  border-radius: 24rpx;
+  padding: 32rpx;
+}
+
+.poster-canvas {
+  width: 100%;
+  height: 1000rpx;
+}
+
+.poster-action-buttons {
+  margin-top: 40rpx;
+  display: flex;
+  justify-content: space-around;
+}
+
+.poster-action-btn {
+  flex: 0.45;
+  height: 96rpx;
+  border-radius: 48rpx;
+  font-size: 28rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.poster-share-btn {
+  background: #07c160;
+  color: white;
+}
+
+.poster-save-btn {
+  background: #ff4444;
+  color: white;
+}
+
+.poster-btn-icon {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 12rpx;
+}
+
+/* 海报样式 */
+
 .group-card {
   background: #fff;
   border-radius: 20rpx;
@@ -177,68 +244,6 @@ progress {
   bottom: 0;
   background: rgba(0,0,0,0.3);
   z-index: 999;
-}
-
-/* pages/index/index.wxss 新增样式 */
-/* 海报生成按钮 */
-.fixed-poster {
-  position: fixed;
-  right: 30rpx;
-  bottom: 120rpx;
-  width: 80rpx;
-  height: 80rpx;
-  border-radius: 50%;
-  background: rgba(94,185,155,0.9);
-  box-shadow: 0 8rpx 16rpx rgba(94,185,155,0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 999;
-}
-
-.poster-icon {
-  width: 50rpx;
-  height: 50rpx;
-}
-
-/* 海报预览模态框 */
-.poster-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.8);
-  z-index: 1001;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.canvas {
-  width: 80%;
-  max-width: 600rpx;
-  background: #fff;
-  border-radius: 20rpx;
-}
-
-.action-btns {
-  margin-top: 40rpx;
-  display: flex;
-  gap: 30rpx;
-}
-
-.save-btn {
-  background: #5EB99B;
-  color: #fff;
-  min-width: 200rpx;
-}
-
-.close-btn {
-  background: #666;
-  color: #fff;
-  min-width: 200rpx;
 }
 
 .countdown-item {

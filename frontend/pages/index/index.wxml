@@ -73,3 +73,27 @@
 
 <!-- 侧边栏菜单 --> 
 <group-sidebar id="groupSidebar" bind:generateposter="handleGeneratePoster" />
+
+<!-- 海报弹窗 -->
+<view class="poster-modal" wx:if="{{showPosterModal}}">
+    <view class="poster-modal-mask" bindtap="hidePosterModal"></view>
+    
+    <view class="poster-modal-content">
+      <!-- 海报画布 -->
+      <canvas type="2d" id="posterCanvas" class="poster-canvas"></canvas>
+      
+      <!-- 操作按钮组 -->
+      <view class="poster-action-buttons">
+        <button class="poster-action-btn poster-share-btn" open-type="share" bindtap="handleShare">
+          <image src="/images/share-icon.png" class="poster-btn-icon"></image>
+          分享好友
+        </button>
+        <button class="poster-action-btn poster-save-btn" bindtap="handleSave">
+          <image src="/images/save-icon.png" class="poster-btn-icon"></image>
+          保存海报
+        </button>
+      </view>
+    </view>
+  </view>
+
+ 
