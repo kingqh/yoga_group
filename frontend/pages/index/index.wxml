@@ -85,11 +85,11 @@
       <!-- 操作按钮组 -->
       <view class="poster-action-buttons">
         <button class="poster-action-btn poster-share-btn" open-type="share" bindtap="handleShare">
-          <image src="/images/share-icon.png" class="poster-btn-icon"></image>
+          <image src="/images/wechat.png" class="poster-btn-icon"></image>
           分享好友
         </button>
         <button class="poster-action-btn poster-save-btn" bindtap="handleSave">
-          <image src="/images/save-icon.png" class="poster-btn-icon"></image>
+          <image src="/images/save-poster.png" class="poster-btn-icon"></image>
           保存海报
         </button>
       </view>

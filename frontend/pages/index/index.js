@@ -223,9 +223,15 @@ Page({
       fontWeight: 'bold'
     })
 
+    const path = encodeURIComponent('pages/index/index?id=1'); // 输出: pages%2Findex%2Findex%3Fid%3D1
+    const fullUrl = `weixin://dl/business/?appid=wx6c6459e8cf0cbccb&path=${path}`;
+    const encodedUrl = encodeURIComponent(fullUrl);
+    const qrPath = encodeURIComponent('pages/index/index?id=123');
+    const qrUrl = `http://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${encodedUrl}`;
+    console.log('qr code url is ', qrUrl);
     // 生成二维码
     await this.drawImage({
-      url: 'http://api.qrserver.com/v1/create-qr-code/?data=HelloWorld!&size=100x100',
+      url: qrUrl,
       x: 400,
       y: 800,
       width: 150,
