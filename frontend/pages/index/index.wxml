@@ -68,11 +68,21 @@
 <!-- 全局开团按钮 --> 
 <view class="fixed-container">
   <view class="global-btn left-btn">¥399 立即开团</view>
-  <view class="global-btn right-btn animate-text">参与好友团</view>
+  <view class="global-btn right-btn animate-text" bindtap="showGroupDialog">参与好友团</view>
 </view>
 
 <!-- 侧边栏菜单 --> 
 <group-sidebar id="groupSidebar" bind:generateposter="handleGeneratePoster" />
+
+<!-- 拼团详情弹窗 --> 
+<group-dialog 
+  id="groupDialog"
+  participantCount="3"
+  posterUrl="/images/curse01.jpeg"
+  participants="{{participants}}"
+  bind:pay="onCreateGroup"
+  bind:close="handleCloseDialog"
+/>
 
 <!-- 海报弹窗 -->
 <view class="poster-modal" wx:if="{{showPosterModal}}">

@@ -1,0 +1,93 @@
+/* group-detail.wxss */
+.container {
+  padding: 20rpx;
+}
+
+/* 第一部分样式 */
+.product-info {
+  display: flex;
+  margin-bottom: 40rpx;
+}
+
+.poster {
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 12rpx;
+}
+
+.info-right {
+  flex: 1;
+  margin-left: 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #333;
+  line-height: 1.4;
+}
+
+.original-price {
+  font-size: 24rpx;
+  color: #999;
+  text-decoration: line-through;
+}
+
+/* 第二部分样式 */
+.participants-section {
+  margin-bottom: 60rpx;
+}
+
+.participants-count {
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 20rpx;
+  display: block;
+}
+
+.user-list {
+  white-space: nowrap;
+}
+
+.user-item {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 30rpx;
+}
+
+.avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  margin-bottom: 10rpx;
+}
+
+.nickname {
+  font-size: 24rpx;
+  color: #666;
+  max-width: 120rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 第三部分样式 */
+/* 操作按钮 */
+.action-btn {
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  background: #e64340;
+  color: #fff;
+  font-size: 34rpx;
+  border-radius: 44rpx;
+  margin-top: 30rpx;
+}
+
+.action-btn:active {
+  background: #ce3c39;
+}

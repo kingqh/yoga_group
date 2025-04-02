@@ -51,6 +51,11 @@ Page({
       { id: 8, avatarUrl: '/images/user8.jpeg' },
       { id: 9, avatarUrl: '/images/user9.jpeg' }
     ],
+    participants: [
+      { id: 1, avatar: '/images/user.jpeg', nickname: '用户1' },
+      { id: 2, avatar: '/images/user2.jpeg', nickname: '用户2' },
+      { id: 3, avatar: '/images/user3.jpeg', nickname: '用户3' },
+    ]
   },
   /* 授权登陆弹窗相关 start */
   // 用户点击授权按钮
@@ -224,7 +229,7 @@ Page({
     })
 
     const path = encodeURIComponent('pages/index/index?id=1'); // 输出: pages%2Findex%2Findex%3Fid%3D1
-    const fullUrl = `weixin://dl/business/?appid=wx6c6459e8cf0cbccb&path=${path}`;
+    const fullUrl = `weixin://dl/business/?appid=wxc97569396d0364c2&path=${path}`;
     const encodedUrl = encodeURIComponent(fullUrl);
     const qrPath = encodeURIComponent('pages/index/index?id=123');
     const qrUrl = `http://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${encodedUrl}`;
@@ -356,5 +361,14 @@ Page({
     
     callback(line, y)
   }, 
+
+  // group详情弹框
+  showGroupDialog() {
+    this.selectComponent('#groupDialog').show()
+  },
+  
+  handleCloseDialog() {
+    this.selectComponent('#groupDialog').hide()
+  }
   
 })

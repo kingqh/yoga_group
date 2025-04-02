@@ -1,0 +1,56 @@
+/* group-dialog.wxss */
+.mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.dialog-container {
+  position: relative;
+  width: 85vw;
+  max-height: 80vh;
+  background: #fff;
+  border-radius: 24rpx;
+  overflow: hidden;
+}
+
+.dialog-content {
+  padding: 30rpx;
+}
+
+/* 调整原组件样式适配弹窗 */
+.dialog-content .product-info {
+  flex-direction: column;
+}
+
+.dialog-content .poster {
+  width: 100%;
+  height: 300rpx;
+  margin-bottom: 20rpx;
+}
+
+.dialog-content .participants-section {
+  margin-bottom: 30rpx;
+}
+
+.dialog-content .footer {
+  position: static;
+  border-top: none;
+  padding: 20rpx 0 0;
+}
+
+.close-icon {
+  position: absolute;
+  top: 20rpx;
+  right: 20rpx;
+  width: 40rpx;
+  height: 40rpx;
+  z-index: 1000;
+}

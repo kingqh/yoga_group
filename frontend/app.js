@@ -18,7 +18,7 @@ App({
       success: (res) => {
         if (res.code) {
           // 发送 code 到后端换取 openid/session_key
-          console.log('res code is ', res.code)
+          console.log('res code is ', res.code);
           wx.request({
             url: 'https://kingqh.cn/api/users/code2id',
             method: 'POST',
@@ -27,6 +27,8 @@ App({
               // 存储 openid，用于后续业务逻辑
               wx.setStorageSync('openid', res.data.data.openid);
               wx.setStorageSync('session_key', res.data.data.session_key);
+              console.log('res openid is ', res.data.data.openid)
+              console.log('res session_key is ', res.data.data.session_key)
             }
           });
         }

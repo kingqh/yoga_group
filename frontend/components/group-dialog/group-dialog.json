@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "group-detail": "/components/group-detail/group-detail"
+  }
+}

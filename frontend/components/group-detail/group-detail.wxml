@@ -1,0 +1,29 @@
+<!-- group-detail.wxml -->
+<view class="container">
+  <!-- 第一部分：商品信息 -->
+  <view class="product-info">
+    <image class="poster" src="{{posterUrl}}" mode="aspectFill"/>
+    <view class="info-right">
+      <text class="title">【沙河高教园超值特惠】 399元抢高级瑜伽课</text>
+      <text class="original-price">原价￥3980</text>
+    </view>
+  </view>
+
+  <!-- 第二部分：参团用户列表 -->
+  <view class="participants-section">
+    <text class="participants-count">已有{{participantCount}}人参加此团</text>
+    <scroll-view class="user-list" scroll-x>
+      <block wx:for="{{participants}}" wx:key="id">
+        <view class="user-item">
+          <image class="avatar" src="{{item.avatar}}" mode="aspectFill"/>
+          <text class="nickname">{{item.nickname}}</text>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+
+  <!-- 第三部分：支付按钮 -->
+  <view class="action-btn" bindtap="handlePay">
+    支付￥399 参加好友的团
+  </view>
+</view>
