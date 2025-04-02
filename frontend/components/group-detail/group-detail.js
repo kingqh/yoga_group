@@ -8,7 +8,10 @@ Component({
       type: Array,
       value: []
     },
-    participantCount: Number
+    participantCount: Number,
+    title: String,
+    groupOriginalPrice: Number,
+    groupPrice: Number
   },
 
   methods: {

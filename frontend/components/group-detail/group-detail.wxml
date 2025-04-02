@@ -4,8 +4,8 @@
   <view class="product-info">
     <image class="poster" src="{{posterUrl}}" mode="aspectFill"/>
     <view class="info-right">
-      <text class="title">【沙河高教园超值特惠】 399元抢高级瑜伽课</text>
-      <text class="original-price">原价￥3980</text>
+      <text class="title">{{title}}</text>
+      <text class="original-price">原价￥{{groupOriginalPrice}}</text>
     </view>
   </view>
 
@@ -24,6 +24,6 @@
 
   <!-- 第三部分：支付按钮 -->
   <view class="action-btn" bindtap="handlePay">
-    支付￥399 参加好友的团
+    支付￥{{groupPrice}} 参加好友的团
   </view>
 </view>

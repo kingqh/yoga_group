@@ -6,6 +6,7 @@ Page({
   ctx: null,
   pixelRatio: 1,
   onLoad() {
+    this.getActivity();
     if (app.globalData.isAuth) {
       // 已授权：直接使用全局数据
       console.log('cache userinfo: ', app.globalData.userInfo);
@@ -34,6 +35,7 @@ Page({
         endTime: 30 * 60 * 60 * 1000,
       }
     ],
+    activity: {},
     timeData: {},
     statsData: {
       viewCount: 235,
@@ -57,6 +59,22 @@ Page({
       { id: 3, avatar: '/images/user3.jpeg', nickname: '用户3' },
     ]
   },
+  /* 调用后端逻辑代码 start */
+  getActivity() {
+    wx.request({
+      url: 'https://kingqh.cn/api/activities/666',
+      method: 'GET',
+      success: (res) => {
+        console.log('getActivity ', res.data.data);
+        this.setData({ activity: res.data.data});
+        this.setData({ statsData: {viewCount: res.data.data.viewed_num, joinCount: res.data.data.registered_num, shareCount: res.data.data.shared_num}});
+      },
+      fail: (err) => {
+        wx.showToast({ title: '获取活动失败,请联系活动负责人!', icon: 'none' })
+      }
+    });
+  },
+   /* 调用后端逻辑代码 end */
   /* 授权登陆弹窗相关 start */
   // 用户点击授权按钮
   getUserProfile(e) {

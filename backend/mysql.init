@@ -52,6 +52,13 @@ ALTER TABLE user_group ADD INDEX idx_expire_status (expire_time, status);
 ALTER TABLE orders ADD INDEX idx_order_status (order_id, status);
 ALTER TABLE group_activity ADD INDEX idx_time_status (start_time, end_time);
 
+-- 给 group_activity 增加 3 个字段
+
+ALTER TABLE group_activity
+ADD COLUMN viewed_num INT NOT NULL DEFAULT 0 COMMENT '浏览数量',
+ADD COLUMN shared_num INT NOT NULL DEFAULT 0 COMMENT '分享数量',
+ADD COLUMN registered_num INT NOT NULL DEFAULT 0 COMMENT '注册数量';
+
 
 
 1. 加入一条活动数据
@@ -76,7 +83,9 @@ INSERT INTO `group_activity` (
   100
 );
 
+--- 上线的活动
 INSERT INTO `group_activity` (
+  `id`,
   `title`,
   `price`,
   `original_price`,
@@ -86,7 +95,8 @@ INSERT INTO `group_activity` (
   `end_time`,
   `stock`
 ) VALUES (
-  '瑜伽新手体验课_测试_1',
+  666,
+  '瑜伽',
   199.00,
   299.00,
   3,

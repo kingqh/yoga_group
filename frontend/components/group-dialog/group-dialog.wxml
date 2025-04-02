@@ -7,6 +7,9 @@
         posterUrl="{{posterUrl}}"
         participants="{{participants}}"
         participantCount="{{participantCount}}"
+        title="{{title}}"
+        groupOriginalPrice="{{groupOriginalPrice}}"
+        groupPrice="{{groupPrice}}"
         bind:pay="handleInnerPay"
       />
     </view>

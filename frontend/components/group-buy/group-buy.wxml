@@ -8,11 +8,10 @@
       mode="aspectFill"
     />
     <view class="right-info">
-      <text class="title">【沙河高教园超值特惠】</text>
-      <text class="subtitle">399元抢瑜伽馆7天训练营+6节高端课!</text>
+      <text class="subtitle">{{title}}</text>
       <view class="price-box">
         <text class="price-label">拼团价</text>
-        <text class="price">¥399</text>
+        <text class="price">¥{{groupPrice}}</text>
       </view>
     </view>
   </view>
@@ -22,23 +21,19 @@
     <view class="options-container">  
       <view class="option-item">
         <text class="people-count">1人团</text>
-        <text class="group-price">¥399</text>
+        <text class="group-price">¥{{groupPrice}}</text>
       </view>
       <view class="option-item">
         <text class="people-count">2人团</text>
-        <text class="group-price">¥299</text>
+        <text class="group-price">¥{{groupPrice}}</text>
       </view>
       <view class="option-item">
         <text class="people-count">3人团</text>
-        <text class="group-price">¥299</text>
+        <text class="group-price">¥{{groupPrice}}</text>
       </view>
       <view class="option-item">
         <text class="people-count">5人团</text>
-        <text class="group-price">¥299</text>
-      </view>
-      <view class="option-item">
-        <text class="people-count">8人团</text>
-        <text class="group-price">¥299</text>
+        <text class="group-price">¥{{groupPrice}}</text>
       </view>
       <view class="scroll-padding"></view>
     </view>

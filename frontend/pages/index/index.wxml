@@ -29,10 +29,9 @@
 <view class="page bg-gradual-orange" bindtouchmove="handleGroupSidebarTouchMove">
   <!-- 拼团活动列表 -->
   <view class="activity-card">
-    <view wx:for="{{activityList}}" wx:key="id">
-      <image class="cover" src="{{item.cover}}" mode="aspectFill" />
+    <image class="cover" src="/images/curse01.jpeg" mode="aspectFill" />
       <view class="group-title-card">
-          <text class="activity-title">【沙河高教园超值特惠】399元抢瑜伽馆7天训练营+6节高端课!</text>
+          <text class="activity-title">{{activity.title}}</text>
       </view>
       <!-- 倒计时 -->
       <view class="countdown-box">
@@ -57,17 +56,16 @@
        
        <!-- 用户团购图 -->
        <view class="group-card">
-        <group-buy bind:createGroup="onCreateGroup" />
+        <group-buy title="{{activity.title}}" groupPrice="{{activity.price}}" bind:createGroup="onCreateGroup" />
        </view>
 
-       <image class="cover" src="{{item.cover}}" mode="aspectFill" />
-    </view>
+       <image class="cover" src="/images/curse01.jpeg" mode="aspectFill" />
   </view>
 </view>
 
 <!-- 全局开团按钮 --> 
 <view class="fixed-container">
-  <view class="global-btn left-btn">¥399 立即开团</view>
+  <view class="global-btn left-btn">¥{{activity.price}} 立即开团</view>
   <view class="global-btn right-btn animate-text" bindtap="showGroupDialog">参与好友团</view>
 </view>
 
@@ -80,6 +78,9 @@
   participantCount="3"
   posterUrl="/images/curse01.jpeg"
   participants="{{participants}}"
+  title="{{activity.title}}"
+  groupOriginalPrice="{{activity.original_price}}"
+  groupPrice="{{activity.price}}"
   bind:pay="onCreateGroup"
   bind:close="handleCloseDialog"
 />

@@ -3,7 +3,10 @@ Component({
   properties: {
     posterUrl: String,
     participants: Array,
-    participantCount: Number
+    participantCount: Number,
+    title: String,
+    groupOriginalPrice: Number,
+    groupPrice: Number
   },
 
   data: {
