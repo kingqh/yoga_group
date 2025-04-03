@@ -23,6 +23,36 @@ class ActivityController {
       res.status(500).json({ code: 500, msg: err.message });
     }
   }
+
+  // 浏览次数+1
+  static async viewCount(req, res) {
+    try {
+      await Activity.incrViewCount(req.params.id);
+      res.json({ code: 200, msg: 'ok' });
+    } catch (err) {
+      res.status(500).json({ code: 500, msg: err.message });
+    }
+  }
+
+  // 注册次数+1
+  static async registerCount(req, res) {
+    try {
+      await Activity.incrRegisterCount(req.params.id);
+      res.json({ code: 200, msg: 'ok' });
+    } catch (err) {
+      res.status(500).json({ code: 500, msg: err.message });
+    }
+  }
+
+  // 分享次数+1
+  static async shareCount(req, res) {
+    try {
+      await Activity.incrShareCount(req.params.id);
+      res.json({ code: 200, msg: 'ok' });
+    } catch (err) {
+      res.status(500).json({ code: 500, msg: err.message });
+    }
+  }
 }
 
 

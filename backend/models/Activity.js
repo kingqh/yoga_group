@@ -52,6 +52,33 @@ class Activity {
       throw new Error('STOCK_UPDATE_FAILED');
     }
   }
+
+  // 记录登陆次数
+  static async incrViewCount(id) {
+    await db.query(`
+      UPDATE group_activity 
+      SET viewed_num = viewed_num + 1 
+      WHERE id = ?
+    `, [id]);
+  }  
+
+  // 记录注册次数
+  static async incrRegisterCount(id) {
+    await db.query(`
+      UPDATE group_activity 
+      SET registered_num = registered_num + 1 
+      WHERE id = ?
+    `, [id]);
+  }  
+
+  // 记录分享次数
+  static async incrShareCount(id) {
+    await db.query(`
+      UPDATE group_activity 
+      SET shared_num = shared_num + 1 
+      WHERE id = ?
+    `, [id]);
+  }  
 }
 
 module.exports = Activity;

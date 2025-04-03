@@ -16,6 +16,10 @@ router.use((req, res, next) => {
 router.get('/activities', ActivityController.listActiveActivities); // 获取有效活动列表
 router.get('/activities/:id', ActivityController.getActivityDetail); // 获取活动详情
 
+router.post('/activities/viewcount/:id', ActivityController.viewCount); // 浏览计数
+router.post('/activities/registercount/:id', ActivityController.registerCount); // 报名计数
+router.post('/activities/sharecount/:id', ActivityController.shareCount); // 分享计数
+
 // 拼团相关接口
 router.post('/groups/:actid/:openid/create', GroupController.createGroup); // 创建新拼团
 router.get('/groups', GroupController.listActiveGroups); // 获取可参与拼团列表
