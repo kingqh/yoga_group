@@ -41,6 +41,9 @@
 
   <!-- 第三部分：开团按钮 -->
   <view class="action-btn" bindtap="handleCreateGroup">
-    立即开团
+    <view wx:if="{{!isJoined}}">
+      立即开团
+    </view>
+    <view wx:else>已参团</view>
   </view>
 </view>

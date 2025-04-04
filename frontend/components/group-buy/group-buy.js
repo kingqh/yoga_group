@@ -3,7 +3,8 @@ Component({
   properties: {
     // 商品数据
     title: String,
-    groupPrice: Number
+    groupPrice: Number,
+    isJoined: Boolean,
   },
   methods: {
     handleCreateGroup() {

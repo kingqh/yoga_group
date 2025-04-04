@@ -22,9 +22,9 @@
   <!-- 下半部分：用户头像轮播 -->
   <!-- 第一排固定头像 -->
   <view class="first-row">
-    <block wx:for="{{firstRowAvatars}}" wx:key="id">
+    <block wx:for="{{firstRowAvatars}}" wx:key="user_id">
       <image 
-        src="{{item.avatarUrl || '/images/default-avatar.png'}}" 
+        src="{{item.avatar || '/images/default-avatar.png'}}" 
         class="avatar" 
         mode="aspectFill"
       />
@@ -41,10 +41,10 @@
 
     <!-- 轮播轨道 -->
     <view class="track" style="transform: translateX({{offset}}rpx);">
-      <block wx:for="{{carouselList}}" wx:key="id">
+      <block wx:for="{{carouselList}}" wx:key="user_id">
         <image 
           class="carousel-avatar" 
-          src="{{item.avatarUrl}}"
+          src="{{item.avatar}}"
           style="z-index: {{-index}};" 
           mode="aspectFill"
         />

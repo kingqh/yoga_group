@@ -13,6 +13,11 @@ App({
       this.globalData.isAuth = true;
     }
 
+    wx.request({
+      url: 'https://kingqh.cn/api/activities/viewcount/666',
+      method: 'POST'
+    });
+
     // 登录获取 openid（不依赖用户授权）
     wx.login({
       success: (res) => {

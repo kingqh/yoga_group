@@ -6,7 +6,7 @@ Page({
   ctx: null,
   pixelRatio: 1,
   onLoad() {
-    this.getActivity();
+    this.refresh();
     if (app.globalData.isAuth) {
       // 已授权：直接使用全局数据
       console.log('cache userinfo: ', app.globalData.userInfo);
@@ -18,45 +18,33 @@ Page({
     }
   },
   data: {
+    //是否是通过好友团
+    isFriendShared: false,
+    //是否已开团
+    isJoined: false,
     showPosterModal: false,
     posterPath: '',
     showLoginModal: false,
     countdown: 3,
     modalAnimation: {},
-    activityList: [
-      {
-        id: 1,
-        cover: '/images/curse01.jpeg',
-        title: '阴瑜伽深度放松课程',
-        price: 99,
-        originalPrice: 199,
-        groupSize: 3,
-        joined: 2,
-        endTime: 30 * 60 * 60 * 1000,
-      }
-    ],
     activity: {},
     timeData: {},
+    // 好友订单
+    friendOrder: {},
+    // 用户自己的订单
+    myOrder: {},
+    // 所有用户信息
+    allUsers: [
+    ],
     statsData: {
       viewCount: 235,
       joinCount: 48,
       shareCount: 32
     },
-    recentUsers: [
-      { id: 1, avatarUrl: '/images/user.jpeg' },
-      { id: 2, avatarUrl: '/images/user2.jpeg' },
-      { id: 3, avatarUrl: '/images/user3.jpeg' },
-      { id: 4, avatarUrl: '/images/user4.jpeg' },
-      { id: 5, avatarUrl: '/images/user5.jpeg' },
-      { id: 6, avatarUrl: '/images/user6.jpeg' },
-      { id: 7, avatarUrl: '/images/user7.jpeg' },
-      { id: 8, avatarUrl: '/images/user8.jpeg' },
-      { id: 9, avatarUrl: '/images/user9.jpeg' }
-    ],
     participants: [
-      { id: 1, avatar: '/images/user.jpeg', nickname: '用户1' },
-      { id: 2, avatar: '/images/user2.jpeg', nickname: '用户2' },
-      { id: 3, avatar: '/images/user3.jpeg', nickname: '用户3' },
+      { avatar: '/images/user.jpeg', nickname: '用户1' },
+      { avatar: '/images/user2.jpeg', nickname: '用户2' },
+      { avatar: '/images/user3.jpeg', nickname: '用户3' },
     ]
   },
   /* 调用后端逻辑代码 start */
@@ -66,6 +54,8 @@ Page({
       method: 'GET',
       success: (res) => {
         console.log('getActivity ', res.data.data);
+        res.data.data.countdownTime = this.getSecondsDifference(res.data.data.end_time);
+        console.log('countdownTime: ', res.data.data.countdownTime);
         this.setData({ activity: res.data.data});
         this.setData({ statsData: {viewCount: res.data.data.viewed_num, joinCount: res.data.data.registered_num, shareCount: res.data.data.shared_num}});
       },
@@ -73,6 +63,97 @@ Page({
         wx.showToast({ title: '获取活动失败,请联系活动负责人!', icon: 'none' })
       }
     });
+  },
+  getFriendOrder() {
+    wx.request({
+      url: 'https://kingqh.cn/api/orders/' + wx.getStorageSync('friendid'),
+      method: 'GET',
+      success: (res) => {
+        console.log('getFriendOrder ', res.data.data);
+        if (res.data && res.data.code == 200) {
+          this.setData({ friendOrder: res.data.data, isFriendShared: true});
+        }
+      },
+      fail: (err) => {
+        wx.showToast({ title: '获取活动失败,请联系活动负责人!', icon: 'none' })
+      }
+    });
+  },
+  getMyOrder() {
+    wx.request({
+      url: 'https://kingqh.cn/api/orders/' + wx.getStorageSync('openid'),
+      method: 'GET',
+      success: (res) => {
+        console.log('getMyOrder ', res.data.data);
+        if (res.data && res.data.code == 200) {
+          this.setData({ myOrder: res.data.data, isJoined: true});
+        }
+      },
+      fail: (err) => {
+        wx.showToast({ title: '获取活动失败,请联系活动负责人!', icon: 'none' })
+      }
+    });
+  },
+  getAllUsers() {
+    wx.request({
+      url: 'https://kingqh.cn/api/users',
+      method: 'GET',
+      success: (res) => {
+        console.log('getAllUsers ', res.data.data);
+        if (res.data && res.data.code == 200) {
+          this.setData({ allUsers: res.data.data});
+        }
+      },
+      fail: (err) => {
+        wx.showToast({ title: '获取活动失败,请联系活动负责人!', icon: 'none' })
+      }
+    });
+  },
+  creatGroup(openId) {
+    wx.request({
+      url: 'https://kingqh.cn/api/groups/666/' + openId + '/create',
+      method: 'POST', 
+      success: (res) => {
+        console.log('creatGroup res ', res);
+        if (res.data && res.data.code == 200) {
+          console.log('creatGroup success ', res);
+          wx.showToast({ title: '开团成功,生成海报可转发好友一起拼团!', icon: 'none' })
+          this.refresh();
+        } else {
+          console.log('creatGroup failed ', res.data.code);
+          wx.showToast({ title: '拼团失败,请联系活动负责人!', icon: 'none' })
+        }
+      },
+      fail: (err) => {
+        wx.showToast({ title: '拼团失败,请联系活动负责人!', icon: 'none' })
+      }
+    })
+  },
+  joinGroup(friendId, openId) {
+    wx.request({
+      url: 'https://kingqh.cn/api/groups/' + friendId + '/'+ openId + '/join',
+      method: 'POST', 
+      success: (res) => {
+        console.log('joinGroup res ', res);
+        if (res.data && res.data.code == 200) {
+          console.log('joinGroup success ', res);
+          wx.showToast({ title: '加团成功!', icon: 'none' });
+          this.refresh();
+        } else {
+          console.log('joinGroup failed ', res.data.code);
+          wx.showToast({ title: '拼团失败,请联系活动负责人!', icon: 'none' })
+        }
+      },
+      fail: (err) => {
+        wx.showToast({ title: '拼团失败,请联系活动负责人!', icon: 'none' })
+      }
+    })
+  },
+  refresh() {
+    this.getActivity();
+    this.getAllUsers();
+    this.getMyOrder();
+    this.getFriendOrder();
   },
    /* 调用后端逻辑代码 end */
   /* 授权登陆弹窗相关 start */
@@ -162,10 +243,50 @@ Page({
 
   // 处理开团事件
   onCreateGroup() {
-    wx.showToast({
-      title: '开团逻辑处理中...',
-      icon: 'none'
-    })
+    if (this.data.isJoined) {
+      this.showGroupDialog();
+      return 
+    }
+    wx.request({
+      url: 'https://kingqh.cn/api/activities/registercount/666',
+      method: 'POST'
+    });
+    wx.showModal({
+      title: '确认开团',
+      content: '确定要支付 ¥ ' + this.data.activity.price +  '开团吗',
+      confirmText: '确认',
+      cancelText: '再想想',
+      success: (res) => {
+        if (res.confirm) {
+          console.log('onCreateGroup ');
+          this.creatGroup(wx.getStorageSync('openid'));
+        }
+      }
+    });
+  },
+
+  // 处理加团事件
+  onJoinGroup() {
+    if (this.data.isJoined) {
+      this.showGroupDialog();
+      return 
+    }
+    wx.request({
+      url: 'https://kingqh.cn/api/activities/registercount/666',
+      method: 'POST'
+    });
+    wx.showModal({
+      title: '确认加入好友的团',
+      content: '确定要支付 ¥ ' + this.data.activity.price +  '开团吗',
+      confirmText: '确认',
+      cancelText: '再想想',
+      success: (res) => {
+        if (res.confirm) {
+          console.log('onJoinGroup ');
+          this.joinGroup(wx.getStorageSync('friendid'), wx.getStorageSync('openid'));
+        }
+      }
+    });
   },
 
   // 处理海报生成页面
@@ -185,6 +306,10 @@ Page({
   // 显示海报弹窗
   async showPosterModal() {
     this.setData({ showPosterModal: true }, async () => {
+      wx.request({
+        url: 'https://kingqh.cn/api/activities/sharecount/666',
+        method: 'POST'
+      });
       await this.initCanvas();
       await this.drawPoster();
     });
@@ -387,6 +512,23 @@ Page({
   
   handleCloseDialog() {
     this.selectComponent('#groupDialog').hide()
-  }
+  },
+
+  getSecondsDifference(mysqlDateStr) {
+   
+    const dbDate = new Date(mysqlDateStr);
+    
+    // 验证日期有效性
+    if (isNaN(dbDate.getTime())) {
+        throw new Error('无效的日期格式');
+    }
+
+    const now = new Date(); // 当前时间
+
+    console.log('dbDate: ', dbDate);
+    console.log('now: ', now);
+    const diffMs = dbDate - now; // 差值（毫秒）
+    return Math.floor(diffMs); // 转换为秒
+  },
   
 })

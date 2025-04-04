@@ -36,7 +36,7 @@
       <!-- 倒计时 -->
       <view class="countdown-box">
         <text>活动结束倒计时:</text>
-        <van-count-down use-slot time="{{item.endTime}}" bind:change="onChange">
+        <van-count-down use-slot time="{{activity.countdownTime}}" bind:change="onChange">
           <text class="countdown-item">{{ timeData.days }}</text>
           <text class="countdown-box-text">天</text>
           <text class="countdown-item">{{ timeData.hours }}</text>
@@ -50,13 +50,13 @@
        <view class="group-card">
         <group-user-display 
           stats="{{statsData}}"
-          users="{{recentUsers}}"
+          users="{{allUsers}}"
         />
        </view>
        
        <!-- 用户团购图 -->
        <view class="group-card">
-        <group-buy title="{{activity.title}}" groupPrice="{{activity.price}}" bind:createGroup="onCreateGroup" />
+        <group-buy title="{{activity.title}}" groupPrice="{{activity.price}}" isJoined="{{isJoined}}" bind:createGroup="onCreateGroup" />
        </view>
 
        <image class="cover" src="/images/curse01.jpeg" mode="aspectFill" />
@@ -65,8 +65,13 @@
 
 <!-- 全局开团按钮 --> 
 <view class="fixed-container">
-  <view class="global-btn left-btn">¥{{activity.price}} 立即开团</view>
-  <view class="global-btn right-btn animate-text" bindtap="showGroupDialog">参与好友团</view>
+  <view class="global-btn left-btn" bindtap="onCreateGroup">
+    <view wx:if="{{!isJoined}}">
+      ¥{{activity.price}} 立即开团
+    </view>
+    <view wx:else>已参团,点击查看详情!</view>
+  </view>
+  <view wx:if="{{!isJoined && isFriendShared}}" class="global-btn right-btn animate-text" bindtap="showGroupDialog">参与好友团</view>
 </view>
 
 <!-- 侧边栏菜单 --> 
@@ -81,7 +86,7 @@
   title="{{activity.title}}"
   groupOriginalPrice="{{activity.original_price}}"
   groupPrice="{{activity.price}}"
-  bind:pay="onCreateGroup"
+  bind:pay="onJoinGroup"
   bind:close="handleCloseDialog"
 />
 
