@@ -51,9 +51,9 @@ Page({
     },
     participantCount: 3,
     participants: [
-      { avatar: '/images/user.jpeg', nickname: '用户1', isLeader: true },
-      { avatar: '/images/user2.jpeg', nickname: '用户2', isLeader: false },
-      { avatar: '/images/user3.jpeg', nickname: '用户3', isLeader: false },
+      { avatar: 'https://kingqh.cn/yoga_audio/img/user.jpeg', nickname: '用户1', isLeader: true },
+      { avatar: 'https://kingqh.cn/yoga_audio/img/user2.jpeg', nickname: '用户2', isLeader: false },
+      { avatar: 'https://kingqh.cn/yoga_audio/img/user3.jpeg', nickname: '用户3', isLeader: false },
     ]
   },
   /* 调用后端逻辑代码 start */
