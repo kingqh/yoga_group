@@ -29,7 +29,7 @@
 <view class="page bg-gradual-orange" bindtouchmove="handleGroupSidebarTouchMove">
   <!-- 拼团活动列表 -->
   <view class="activity-card">
-    <image class="cover" src="/images/curse01.jpeg" mode="aspectFill" />
+    <image class="cover" src="https://kingqh.cn/yoga_audio/img/yoga_poster.png" mode="aspectFill" />
       <view class="group-title-card">
           <text class="activity-title">{{activity.title}}</text>
       </view>
@@ -59,7 +59,10 @@
         <group-buy title="{{activity.title}}" groupPrice="{{activity.price}}" isJoined="{{isJoined}}" bind:createGroup="onCreateGroup" />
        </view>
 
-       <image class="cover" src="/images/curse01.jpeg" mode="aspectFill" />
+       <image class="cover" src="https://kingqh.cn/yoga_audio/img/yoga_1.png" mode="aspectFill" />
+       <image class="cover" src="https://kingqh.cn/yoga_audio/img/yoga_2.png" mode="aspectFill" />
+       <image class="cover" src="https://kingqh.cn/yoga_audio/img/yoga_3.png" mode="aspectFill" />
+       <image class="cover" src="https://kingqh.cn/yoga_audio/img/yoga_4.png" mode="aspectFill" />
   </view>
 </view>
 
@@ -81,7 +84,7 @@
 <group-dialog 
   id="groupDialog"
   participantCount="{{participantCount}}"
-  posterUrl="/images/curse01.jpeg"
+  posterUrl="https://kingqh.cn/yoga_audio/img/yoga_poster.png"
   participants="{{participants}}"
   title="{{activity.title}}"
   groupOriginalPrice="{{activity.original_price}}"

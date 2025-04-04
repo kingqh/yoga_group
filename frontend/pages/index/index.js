@@ -410,7 +410,7 @@ Page({
 
     // 绘制商品图片
     await this.drawImage({
-      url: '/images/curse01.jpeg',
+      url: 'https://kingqh.cn/yoga_audio/img/yoga_poster.png',
       x: 30,
       y: 30,
       width: 540,

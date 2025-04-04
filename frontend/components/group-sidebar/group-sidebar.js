@@ -52,6 +52,7 @@ Component({
     attached() {
       this.startAutoShowTimer();
       this.initInnerAudioContext();
+      this.toggleMusic();
     },
     detached() {
       this.clearAllTimers();
