@@ -6,7 +6,8 @@ Component({
     participantCount: Number,
     title: String,
     groupOriginalPrice: Number,
-    groupPrice: Number
+    groupPrice: Number,
+    isJoined: Boolean
   },
 
   data: {

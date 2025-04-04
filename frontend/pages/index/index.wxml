@@ -80,12 +80,13 @@
 <!-- 拼团详情弹窗 --> 
 <group-dialog 
   id="groupDialog"
-  participantCount="3"
+  participantCount="{{participantCount}}"
   posterUrl="/images/curse01.jpeg"
   participants="{{participants}}"
   title="{{activity.title}}"
   groupOriginalPrice="{{activity.original_price}}"
   groupPrice="{{activity.price}}"
+  isJoined="{{isJoined}}"
   bind:pay="onJoinGroup"
   bind:close="handleCloseDialog"
 />

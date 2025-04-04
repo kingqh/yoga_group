@@ -7,6 +7,10 @@ Page({
   pixelRatio: 1,
   onLoad() {
     this.refresh();
+    setInterval(() => {
+      this.refresh(); 
+      console.log("定时请求已触发");
+    }, 10000);
     if (app.globalData.isAuth) {
       // 已授权：直接使用全局数据
       console.log('cache userinfo: ', app.globalData.userInfo);
@@ -41,10 +45,11 @@ Page({
       joinCount: 48,
       shareCount: 32
     },
+    participantCount: 3,
     participants: [
-      { avatar: '/images/user.jpeg', nickname: '用户1' },
-      { avatar: '/images/user2.jpeg', nickname: '用户2' },
-      { avatar: '/images/user3.jpeg', nickname: '用户3' },
+      { avatar: '/images/user.jpeg', nickname: '用户1', isLeader: true },
+      { avatar: '/images/user2.jpeg', nickname: '用户2', isLeader: false },
+      { avatar: '/images/user3.jpeg', nickname: '用户3', isLeader: false },
     ]
   },
   /* 调用后端逻辑代码 start */
@@ -65,34 +70,70 @@ Page({
     });
   },
   getFriendOrder() {
-    wx.request({
-      url: 'https://kingqh.cn/api/orders/' + wx.getStorageSync('friendid'),
-      method: 'GET',
-      success: (res) => {
-        console.log('getFriendOrder ', res.data.data);
-        if (res.data && res.data.code == 200) {
-          this.setData({ friendOrder: res.data.data, isFriendShared: true});
+    if (wx.getStorageSync('friendid') != '') {
+      wx.request({
+        url: 'https://kingqh.cn/api/orders/' + wx.getStorageSync('friendid'),
+        method: 'GET',
+        success: (res) => {
+          console.log('getFriendOrder ', res.data.data);
+          if (res.data && res.data.code == 200) {
+            console.log('set isFriendShared true ', res.data);
+            this.setData({ friendOrder: res.data.data, isFriendShared: true});
+          }
+          this.setJoinMemberData();
+        },
+        fail: (err) => {
+          wx.showToast({ title: '获取活动失败,请联系活动负责人!', icon: 'none' })
         }
-      },
-      fail: (err) => {
-        wx.showToast({ title: '获取活动失败,请联系活动负责人!', icon: 'none' })
-      }
-    });
+      });
+    }
+  },
+  setJoinMemberData() {
+    // 设置参团详情数据
+    if (this.data.isJoined) {
+      console.log('setJoinMemberData ');
+      const userMap = {};
+      const joninMembers = [];
+      this.data.allUsers.forEach(u => userMap[u.openid] = u);
+      this.data.myOrder.group_members.forEach(g => {
+        if (g != this.data.myOrder.group_creator_openid) {
+          joninMembers.push({nickname: userMap[g].nickname, avatar: userMap[g].avatar, isLeader: false});
+        } else {
+          joninMembers.push({nickname: userMap[g].nickname, avatar: userMap[g].avatar, isLeader: true});
+        }
+      });
+      this.setData({participantCount: joninMembers.length, participants: joninMembers});
+    } else if(this.data.isFriendShared) {
+      const userMap = {};
+      const joninMembers = [];
+      this.data.allUsers.forEach(u => userMap[u.openid] = u);
+      this.data.friendOrder.group_members.forEach(g => {
+        if (g != this.data.friendOrder.group_creator_openid) {
+          joninMembers.push({nickname: userMap[g].nickname, avatar: userMap[g].avatar, isLeader: false});
+        } else {
+          joninMembers.push({nickname: userMap[g].nickname, avatar: userMap[g].avatar, isLeader: true});
+        }
+      });
+      this.setData({participantCount: joninMembers.length, participants: joninMembers});
+    }
   },
   getMyOrder() {
-    wx.request({
-      url: 'https://kingqh.cn/api/orders/' + wx.getStorageSync('openid'),
-      method: 'GET',
-      success: (res) => {
-        console.log('getMyOrder ', res.data.data);
-        if (res.data && res.data.code == 200) {
-          this.setData({ myOrder: res.data.data, isJoined: true});
+    if (wx.getStorageSync('openid') != '') {
+      wx.request({
+        url: 'https://kingqh.cn/api/orders/' + wx.getStorageSync('openid'),
+        method: 'GET',
+        success: (res) => {
+          console.log('getMyOrder ', res.data.data);
+          if (res.data && res.data.code == 200) {
+            this.setData({ myOrder: res.data.data, isJoined: true});
+          }
+          this.setJoinMemberData();
+        },
+        fail: (err) => {
+          wx.showToast({ title: '获取活动失败,请联系活动负责人!', icon: 'none' })
         }
-      },
-      fail: (err) => {
-        wx.showToast({ title: '获取活动失败,请联系活动负责人!', icon: 'none' })
-      }
-    });
+      });
+    }
   },
   getAllUsers() {
     wx.request({
@@ -103,6 +144,8 @@ Page({
         if (res.data && res.data.code == 200) {
           this.setData({ allUsers: res.data.data});
         }
+        this.getMyOrder();
+        this.getFriendOrder();
       },
       fail: (err) => {
         wx.showToast({ title: '获取活动失败,请联系活动负责人!', icon: 'none' })
@@ -152,8 +195,6 @@ Page({
   refresh() {
     this.getActivity();
     this.getAllUsers();
-    this.getMyOrder();
-    this.getFriendOrder();
   },
    /* 调用后端逻辑代码 end */
   /* 授权登陆弹窗相关 start */
@@ -275,18 +316,33 @@ Page({
       url: 'https://kingqh.cn/api/activities/registercount/666',
       method: 'POST'
     });
-    wx.showModal({
-      title: '确认加入好友的团',
-      content: '确定要支付 ¥ ' + this.data.activity.price +  '开团吗',
-      confirmText: '确认',
-      cancelText: '再想想',
-      success: (res) => {
-        if (res.confirm) {
-          console.log('onJoinGroup ');
-          this.joinGroup(wx.getStorageSync('friendid'), wx.getStorageSync('openid'));
+    if (this.data.participantCount == this.data.activity.group_size) {
+      wx.showModal({
+        title: '确认加入好友的团',
+        content: '确定要支付 ¥ ' + this.data.activity.price +  '加团吗',
+        confirmText: '确认',
+        cancelText: '再想想',
+        success: (res) => {
+          if (res.confirm) {
+            console.log('onJoinGroup ');
+            this.joinGroup(wx.getStorageSync('friendid'), wx.getStorageSync('openid'));
+          }
         }
-      }
-    });
+      });
+    } else {
+      wx.showModal({
+        title: '拼团已满',
+        content: '朋友分享的团已满，请重新开团!',
+        confirmText: '确认',
+        cancelText: '再想想',
+        success: (res) => {
+          if (res.confirm) {
+            console.log('拼团已满,重新开团 ');
+            this.handleCloseDialog();
+          }
+        }
+      });
+    }
   },
 
   // 处理海报生成页面

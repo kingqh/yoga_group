@@ -13,6 +13,11 @@ App({
       this.globalData.isAuth = true;
     }
 
+    // 获取二维码传的参数,默认为好友的openid
+    const scene = decodeURIComponent(options.scene); // 解码scene参数
+    console.log(scene); // 输出：id=123
+    wx.setStorageSync('friendid', scene);
+
     wx.request({
       url: 'https://kingqh.cn/api/activities/viewcount/666',
       method: 'POST'

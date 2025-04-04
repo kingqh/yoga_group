@@ -15,7 +15,11 @@
     <scroll-view class="user-list" scroll-x>
       <block wx:for="{{participants}}" wx:key="id">
         <view class="user-item">
-          <image class="avatar" src="{{item.avatar}}" mode="aspectFill"/>
+          <view class="avatar-container">
+            <image class="avatar" src="{{item.avatar}}" mode="aspectFill"/>
+            <!-- 团长标识 -->
+            <view class="leader-badge" wx:if="{{item.isLeader}}">团长</view>
+          </view>
           <text class="nickname">{{item.nickname}}</text>
         </view>
       </block>
@@ -23,7 +27,7 @@
   </view>
 
   <!-- 第三部分：支付按钮 -->
-  <view class="action-btn" bindtap="handlePay">
+  <view class="action-btn" wx:if="{{!isJoined}}" bindtap="handlePay">
     支付￥{{groupPrice}} 参加好友的团
   </view>
 </view>

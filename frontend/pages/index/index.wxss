@@ -357,10 +357,10 @@ progress {
 
 .global-btn {
   flex: 3;
-  height: 80rpx;
+  height: 90rpx;
   line-height: 80rpx;
   text-align: center;
-  font-size: 34rpx;
+  font-size: 40rpx;
 }
 
 .left-btn {
@@ -380,10 +380,10 @@ progress {
 
 @keyframes textScale {
   0%, 100% {
-    font-size: 32rpx;
+    font-size: 35rpx;
   }
   50% {
-    font-size: 36rpx;
+    font-size: 43rpx;
   }
 }
 
