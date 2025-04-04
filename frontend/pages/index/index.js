@@ -5,7 +5,11 @@ Page({
   canvas: null,
   ctx: null,
   pixelRatio: 1,
-  onLoad() {
+  onLoad(options) {
+    // 获取二维码传的参数,默认为好友的openid
+    const scene = decodeURIComponent(options.scene); // 解码scene参数
+    console.log(scene); // 输出：id=123
+    wx.setStorageSync('friendid', scene);
     this.refresh();
     setInterval(() => {
       this.refresh(); 
