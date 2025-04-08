@@ -4,7 +4,7 @@
   <view class="top-section">
     <image 
       class="poster"
-      src="https://kingqh.cn/yoga_audio/img/yoga_poster.png"
+      src="https://resource.kingqh.cn/yoga_audio/img/yoga_poster_prod.png"
       mode="aspectFill"
     />
     <view class="right-info">

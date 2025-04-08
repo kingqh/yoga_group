@@ -23,9 +23,9 @@
   left: 50%;
   transform: translate(-50%, -50%);
   width: 80%;
-  background: white;
+  /* background: white; */
   border-radius: 24rpx;
-  padding: 32rpx;
+  /* padding: 32rpx; */
 }
 
 .poster-canvas {
@@ -42,7 +42,7 @@
 .poster-action-btn {
   flex: 0.45;
   height: 96rpx;
-  border-radius: 48rpx;
+  border-radius: 18rpx;
   font-size: 28rpx;
   display: flex;
   align-items: center;

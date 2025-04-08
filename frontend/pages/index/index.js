@@ -288,6 +288,10 @@ Page({
 
   // 处理开团事件
   onCreateGroup() {
+    if (this.data.activity.countdownTime <= 0) {
+      wx.showToast({ title: '活动已结束,请联系活动负责人!', icon: 'none' })
+      return
+    }
     if (this.data.isJoined) {
       this.showGroupDialog();
       return 
@@ -312,6 +316,10 @@ Page({
 
   // 处理加团事件
   onJoinGroup() {
+    if (this.data.activity.countdownTime <= 0) {
+      wx.showToast({ title: '活动已结束,请联系活动负责人!', icon: 'none' })
+      return
+    }
     if (this.data.isJoined) {
       this.showGroupDialog();
       return 
@@ -412,20 +420,70 @@ Page({
     ctx.fillStyle = '#ffffff'
     ctx.fillRect(0, 0, 600, 1000)
 
+
+    await this.drawImage({
+      url: 'https://resource.kingqh.cn/yoga_audio/img/yoga_poster_backgroud.png',
+      x: 0,
+      y: 0,
+      width: 600,
+      height: 1000
+    })
+
+    const userMap = {};
+    this.data.allUsers.forEach(u => userMap[u.openid] = u);
+
+    // 插入用户头像
+    await this.drawImage({
+      url: userMap[this.data.myOrder.openid].avatar,
+      x: 20,
+      y: 20,
+      width: 80,
+      height: 80
+    })
+
+    // 插入用户昵称
+    this.drawText({
+      text: userMap[this.data.myOrder.openid].nickname,
+      x: 120,
+      y: 40,
+      fontSize: 20,
+      color: 'white',
+      fontWeight: 'bold'
+    })
+
+    this.drawText({
+      text: '快参加我的团,一起领好礼吧!',
+      x: 120,
+      y: 80,
+      fontSize: 20,
+      color: 'white',
+      fontWeight: 'bold'
+    })
+
     // 绘制商品图片
     await this.drawImage({
-      url: 'https://kingqh.cn/yoga_audio/img/yoga_poster.png',
-      x: 30,
-      y: 30,
-      width: 540,
-      height: 540
+      url: 'https://resource.kingqh.cn/yoga_audio/img/yoga_poster_prod.png',
+      x: 140,
+      y: 280,
+      width: 300,
+      height: 300
+    })
+
+    // 绘制价格文字
+    this.drawText({
+      text: '拼团钜惠一起省钱',
+      x: 105,
+      y: 165,
+      fontSize: 50,
+      color: '#FFD700',
+      fontWeight: 'bold'
     })
 
     // 绘制价格文字
     this.drawText({
       text: '¥399 一起团',
-      x: 300,
-      y: 600,
+      x: 145,
+      y: 675,
       fontSize: 48,
       color: '#ff4444',
       fontWeight: 'bold'
