@@ -59,7 +59,7 @@
         <group-buy title="{{activity.title}}" groupPrice="{{activity.price}}" isJoined="{{isJoined}}" bind:createGroup="onCreateGroup" />
        </view>
 
-       <image class="cover_other" src="https://resource.kingqh.cn/yoga_audio/img/yoga_info_a.jpg"  lazy-load="{{true}} mode="aspectFill" />
+       <image class="cover_other" src="https://resource.kingqh.cn/yoga_audio/img/yoga_info_b.jpg"  lazy-load="{{true}}" mode="aspectFill" />
   </view>
 </view>
 
