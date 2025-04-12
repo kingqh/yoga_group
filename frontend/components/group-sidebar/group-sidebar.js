@@ -6,7 +6,7 @@ Component({
       type: Object,
       value: {
         autoShowDelay: 2000,   // 自动展开延迟
-        musicUrl: 'https://kingqh.cn/yoga_audio/yoga_group.mp3' 
+        musicUrl: 'https://resource.kingqh.cn/yoga_audio/yoga_group.mp3' 
       }
     },
   },
@@ -41,8 +41,8 @@ Component({
     ],
     // 商家联系信息
     contacts: [
-      { icon: '/images/phone.png', info: '联系电话：400-123-4567' },
-      { icon: '/images/address.png', info: '地址：XX市XX区XX路XX号' },
+      { icon: '/images/phone.png', info: '联系电话：18201640053' },
+      { icon: '/images/address.png', info: '地址：北京市沙河高教园北街家园七区2号楼1单元702' },
       { icon: '/images/time.png', info: '营业时间：9:00-21:00' }
     ],
     innerAudioContext: null

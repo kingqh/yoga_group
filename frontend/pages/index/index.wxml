@@ -59,7 +59,25 @@
         <group-buy title="{{activity.title}}" groupPrice="{{activity.price}}" isJoined="{{isJoined}}" bind:createGroup="onCreateGroup" />
        </view>
 
-       <image class="cover_other" src="https://resource.kingqh.cn/yoga_audio/img/yoga_info_b.jpg"  lazy-load="{{true}}" mode="aspectFill" />
+       <image class="cover_table_first" src="https://resource.kingqh.cn/yoga_audio/img/yoga_table_a.jpg" mode="aspectFill" />
+
+       <image class="cover_other" src="https://resource.kingqh.cn/yoga_audio/img/yoga_table_b.jpg" mode="aspectFill" />
+
+       <image class="cover_class" src="https://resource.kingqh.cn/yoga_audio/img/yoga_class_a.jpg" mode="aspectFill" />
+       <image class="cover_class" src="https://resource.kingqh.cn/yoga_audio/img/yoga_class_b.jpg" mode="aspectFill" />
+       <image class="cover_class" src="https://resource.kingqh.cn/yoga_audio/img/yoga_class_c.jpg" mode="aspectFill" />
+       <image class="cover_class" src="https://resource.kingqh.cn/yoga_audio/img/yoga_class_d.jpg" mode="aspectFill" />
+       <image class="cover_class" src="https://resource.kingqh.cn/yoga_audio/img/yoga_class_e.jpg" mode="aspectFill" />
+       <image class="cover_class" src="https://resource.kingqh.cn/yoga_audio/img/yoga_class_f.jpg" mode="aspectFill" />
+       <image class="cover_class" src="https://resource.kingqh.cn/yoga_audio/img/yoga_class_g.jpg" mode="aspectFill" />
+       <image class="cover_class" src="https://resource.kingqh.cn/yoga_audio/img/yoga_class_h.jpg" mode="aspectFill" />
+       <image class="cover_class" src="https://resource.kingqh.cn/yoga_audio/img/yoga_class_m.jpg" mode="aspectFill" />
+       
+       <image class="cover_class" src="https://resource.kingqh.cn/yoga_audio/img/yoga_contact.jpg" mode="aspectFill" />
+
+       <view class="group-footer">
+          一叶健康提供技术支持
+       </view>
   </view>
 </view>
 
