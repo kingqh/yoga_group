@@ -15,9 +15,14 @@ class GroupController {
       }
 
       const order = await Order.findOrderByOpenId(creatorOpenId);
-      if (order) {
-        return res.status(409).json({ code: 409, msg: '用户已创建过订单' });
+      if (order && order.status == 1) {
+        return res.status(409).json({ code: 409, msg: '已经建团并支付', order_id: order.order_id }); 
       }
+      if (order) {
+        return res.status(200).json({ code: 200, msg: '已经建团，但未支付', order_id: order.order_id });
+      }
+
+      const orderId = Order.generateOrderId();
 
       // 事务操作
       await db.transaction(async (connection) => {
@@ -37,10 +42,9 @@ class GroupController {
         );
 
         console.log('groupId is', groupId);
-
         // 创建订单记录
         await Order.createWithConnection(
-          Order.generateOrderId(),
+          orderId,
           creatorOpenId,
           groupId,
           activity.price,
@@ -49,7 +53,7 @@ class GroupController {
       });
 
       console.log('create group success');
-      res.json({ code: 200, msg: '建团成功' });
+      res.json({ code: 200, msg: '建团成功', order_id: orderId });
     } catch (err) {
       res.status(500).json({ code: 500, msg: err.message });
     }
@@ -65,10 +69,14 @@ class GroupController {
       }
 
       const order = await Order.findOrderByOpenId(userOpenId);
+      if (order && order.status == 1) {
+        return res.status(409).json({ code: 409, msg: '已经参团并支付', order_id: order.order_id }); 
+      }
       if (order) {
-        return res.status(409).json({ code: 409, msg: '已经参团了' });
+        return res.status(200).json({ code: 200, msg: '已经参团，但未支付，需要重新支付', order_id: order.order_id }); 
       }
 
+      const orderId = Order.generateOrderId();
       // 事务操作
       await db.transaction(async (connection) => {
         // 扣减库存
@@ -87,7 +95,7 @@ class GroupController {
 
         // 创建订单记录
         await Order.createWithConnection(
-          Order.generateOrderId(),
+          orderId,
           userOpenId,
           creatorOrder.group_id, 
           creatorOrder.amount, 
@@ -95,7 +103,7 @@ class GroupController {
         );
       });
 
-      res.json({ code: 200, msg: '参团成功' });
+      res.json({ code: 200, msg: '参团成功', order_id: orderId });
     } catch (err) {
       res.status(500).json({ code: 500, msg: err.message });
     }

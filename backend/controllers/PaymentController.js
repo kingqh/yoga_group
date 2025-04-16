@@ -1,30 +1,37 @@
 const PaymentService = require('../services/PaymentService');
 
 class PaymentController {
-  // 创建预支付订单
-  static async createPrepayOrder(req, res) {
+  // 创建支付订单
+  static async createPayment(req, res) {
     try {
-      const { groupId } = req.body;
-      const paymentParams = await PaymentService.createOrder({
-        openid: req.user.openid,
-        groupId
-      });
+      const { orderId, amount, openid, description } = req.body;
       
-      res.json({ code: 200, data: paymentParams });
-    } catch (err) {
-      res.status(500).json({ code: 500, msg: err.message });
+      const paymentParams = await PaymentService.createPayment(
+        orderId,
+        amount,
+        openid,
+        description
+      );
+
+      res.json({
+        code: 200,
+        data: paymentParams
+      });
+    } catch (error) {
+      res.status(400).json({
+        code: 400,
+        msg: error.message
+      });
     }
   }
 
-  // 处理支付回调
-  static async handlePaymentNotify(req, res) {
+  // 支付回调处理
+  static async handleNotify(req, res) {
     try {
-      const result = await PaymentService.handleNotify(req.body);
-      if (result) {
-        res.send('<xml><return_code><![CDATA[SUCCESS]]></return_code></xml>');
-      }
-    } catch (err) {
-      res.status(500).send('<xml><return_code><![CDATA[FAIL]]></return_code></xml>');
+      const result = await PaymentService.handleNotification(req.rawBody);
+      res.set('Content-Type', 'text/xml').send(result);
+    } catch (error) {
+      res.status(500).send(PaymentService.buildFailResponse(error.message));
     }
   }
 }

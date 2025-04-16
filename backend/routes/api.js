@@ -36,8 +36,8 @@ router.post('/users/login', UserController.login);
 router.post('/users/code2id', UserController.code2id);
 
 // 支付相关接口
-router.post('/payment/prepay', PaymentController.createPrepayOrder); // 创建支付订单
-router.post('/payment/notify', PaymentController.handlePaymentNotify); // 支付回调
+router.post('/payment/create', PaymentController.createPayment); // 创建支付订单
+router.post('/payment/notify', PaymentController.handleNotify); // 支付回调
 
 
 // 错误处理中间件
